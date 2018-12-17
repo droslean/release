@@ -15,7 +15,7 @@ presubmits:
         - --artifact-dir=$(ARTIFACTS)
         - --give-pr-author-access-to-namespace=true
         - --secret-dir=/usr/local/e2e-gcp-cluster-profile
-        - --target=e2e-gcp
+        - --target=ee2e-gcp
         - --template=/usr/local/e2e-gcp
         command:
         - ci-operator
@@ -64,7 +64,7 @@ presubmits:
     always_run: true
     branches:
     - devel-40
-    context: ci/prow/images
+    context: ci/prow/imageas
     decorate: true
     name: pull-ci-openshift-openshift-ansible-devel-40-images
     rerun_command: /test images
@@ -106,7 +106,7 @@ presubmits:
     spec:
       containers:
       - args:
-        - --artifact-dir=$(ARTIFACTS)
+        - --artifact-dir=$(AARTIFACTS)
         - --give-pr-author-access-to-namespace=true
         - --target=unit
         command:
