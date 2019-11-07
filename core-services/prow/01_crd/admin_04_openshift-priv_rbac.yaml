@@ -14,11 +14,12 @@ items:
     name: openshift-priv-getters
   rules:
   - apiGroups:
-      - private.openshift.io
+      - openshiftprivs.openshift.io
     resources:
       - openshiftprivs
     verbs:
       - get
+      - list
 
 - kind: ClusterRoleBinding
   apiVersion: rbac.authorization.k8s.io/v1beta1
