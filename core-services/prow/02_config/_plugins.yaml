@@ -2,10 +2,10 @@ approve:
 - ignore_review_state: false
   lgtm_acts_as_approve: true
   repos:
-  - openshift/release
-  - openshift/ci-tools
   - openshift/ci-ns-ttl-controller
   - openshift/ci-secret-mirroring-controller
+  - openshift/ci-tools
+  - openshift/release
 - ignore_review_state: false
   lgtm_acts_as_approve: true
   repos:
@@ -17,17 +17,28 @@ approve:
   require_self_approval: false
 - ignore_review_state: true
   repos:
-  - openshift/kubernetes-autoscaler
-  - openshift/machine-api-operator
+  - openshift-priv/cluster-api
+  - openshift-priv/cluster-api-actuator-pkg
+  - openshift-priv/cluster-api-provider-aws
+  - openshift-priv/cluster-api-provider-azure
+  - openshift-priv/cluster-api-provider-gcp
+  - openshift-priv/cluster-api-provider-kubemark
+  - openshift-priv/cluster-api-provider-libvirt
+  - openshift-priv/cluster-autoscaler-operator
+  - openshift-priv/cluster-machine-approver
+  - openshift-priv/kubernetes-autoscaler
+  - openshift-priv/machine-api-operator
   - openshift/cluster-api
+  - openshift/cluster-api-actuator-pkg
   - openshift/cluster-api-provider-aws
   - openshift/cluster-api-provider-azure
-  - openshift/cluster-api-provider-libvirt
-  - openshift/cluster-api-provider-kubemark
   - openshift/cluster-api-provider-gcp
-  - openshift/cluster-api-actuator-pkg
+  - openshift/cluster-api-provider-kubemark
+  - openshift/cluster-api-provider-libvirt
   - openshift/cluster-autoscaler-operator
   - openshift/cluster-machine-approver
+  - openshift/kubernetes-autoscaler
+  - openshift/machine-api-operator
   require_self_approval: true
 - lgtm_acts_as_approve: true
   repos:
@@ -40,6 +51,8 @@ approve:
   require_self_approval: false
 - lgtm_acts_as_approve: true
   repos:
+  - openshift-priv/operator-lifecycle-manager
+  - openshift-priv/operator-registry
   - operator-framework/operator-lifecycle-manager
   - operator-framework/operator-registry
   require_self_approval: false
@@ -50,11 +63,11 @@ approve:
   require_self_approval: true
 - ignore_review_state: true
   repos:
-  - redhat-developer/devconsole-operator
+  - redhat-developer/build
   - redhat-developer/devconsole-api
+  - redhat-developer/devconsole-operator
   - redhat-developer/git-service
   - redhat-developer/service-binding-operator
-  - redhat-developer/build
   require_self_approval: true
 - ignore_review_state: false
   repos:
@@ -62,21 +75,21 @@ approve:
   require_self_approval: true
 - ignore_review_state: false
   repos:
-  - codeready-toolchain/host-operator
   - codeready-toolchain/api
+  - codeready-toolchain/host-operator
   - codeready-toolchain/member-operator
+  - codeready-toolchain/registration-service
   - codeready-toolchain/toolchain-common
   - codeready-toolchain/toolchain-e2e
   - codeready-toolchain/toolchain-operator
-  - codeready-toolchain/registration-service
   require_self_approval: false
 - ignore_review_state: false
   repos:
-  - integr8ly/integreatly-operator
-  - integr8ly/cloud-resource-operator
-  - integr8ly/installation
-  - integr8ly/heimdall
   - integr8ly/ansible-tower-configuration
+  - integr8ly/cloud-resource-operator
+  - integr8ly/heimdall
+  - integr8ly/installation
+  - integr8ly/integreatly-operator
   require_self_approval: true
 - lgtm_acts_as_approve: true
   repos:
@@ -95,6 +108,7 @@ approve:
   - ostreedev/ostree
   require_self_approval: false
 - repos:
+  - openshift-priv/file-integrity-operator
   - openshift/file-integrity-operator
   require_self_approval: false
 - ignore_review_state: true
@@ -103,6 +117,7 @@ approve:
   require_self_approval: true
 - ignore_review_state: false
   repos:
+  - openshift-priv/installer
   - openshift/installer
   require_self_approval: true
 - repos:
@@ -115,18 +130,23 @@ approve:
   - openshift-kni/cnf-features-deploy
   require_self_approval: false
 - repos:
+  - openshift-priv/cluster-csi-snapshot-controller-operator
   - openshift/cluster-csi-snapshot-controller-operator
   require_self_approval: false
 - repos:
+  - openshift-priv/openshift-tests
   - openshift/openshift-tests
   require_self_approval: false
 - repos:
+  - openshift-priv/csi-driver-nfs
   - openshift/csi-driver-nfs
   require_self_approval: false
 - repos:
+  - openshift-priv/windows-machine-config-operator
   - openshift/windows-machine-config-operator
   require_self_approval: false
 - repos:
+  - openshift-priv/csi-driver-manila-operator
   - openshift/csi-driver-manila-operator
   require_self_approval: false
 blunderbuss:
@@ -216,6 +236,28 @@ bugzilla:
       validate_by_default: true
   orgs:
     openshift:
+      repos:
+        ocs-operator:
+          branches:
+            '*':
+              add_external_link: true
+              exclude_defaults: true
+              is_open: true
+              state_after_merge:
+                status: POST
+              state_after_validation:
+                status: POST
+              valid_states:
+              - status: NEW
+              - status: ASSIGNED
+              - status: ON_DEV
+              - status: POST
+            master:
+              target_release: OCS 4.3.0
+            release-4.2:
+              target_release: OCS 4.2.0
+              validate_by_default: true
+    openshift-priv:
       repos:
         ocs-operator:
           branches:
@@ -1503,10 +1545,10 @@ lgtm:
   - openshift/odo-init-image
   review_acts_as_lgtm: true
 - repos:
-  - openshift/release
-  - openshift/ci-tools
   - openshift/ci-ns-ttl-controller
   - openshift/ci-secret-mirroring-controller
+  - openshift/ci-tools
+  - openshift/release
   review_acts_as_lgtm: true
   trusted_team_for_sticky_lgtm: openshift-team-developer-productivity-test-platform
 - repos:
@@ -1514,6 +1556,7 @@ lgtm:
   review_acts_as_lgtm: true
   trusted_team_for_sticky_lgtm: openshift-team-developer-productivity-test-platform
 - repos:
+  - openshift-priv/file-integrity-operator
   - openshift/file-integrity-operator
   review_acts_as_lgtm: true
 - repos:
@@ -1526,18 +1569,23 @@ lgtm:
   - openshift-kni/cnf-features-deploy
   review_acts_as_lgtm: true
 - repos:
+  - openshift-priv/cluster-csi-snapshot-controller-operator
   - openshift/cluster-csi-snapshot-controller-operator
   review_acts_as_lgtm: true
 - repos:
+  - openshift-priv/openshift-tests
   - openshift/openshift-tests
   review_acts_as_lgtm: true
 - repos:
+  - openshift-priv/csi-driver-nfs
   - openshift/csi-driver-nfs
   review_acts_as_lgtm: true
 - repos:
+  - openshift-priv/windows-machine-config-operator
   - openshift/windows-machine-config-operator
   review_acts_as_lgtm: true
 - repos:
+  - openshift-priv/csi-driver-manila-operator
   - openshift/csi-driver-manila-operator
   review_acts_as_lgtm: true
 override:
@@ -2157,9 +2205,9 @@ plugins:
   - bugzilla
   - cat
   - dog
-  - heart
   - golint
   - goose
+  - heart
   - help
   - hold
   - label
