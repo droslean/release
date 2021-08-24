@@ -20,6 +20,7 @@ presubmits:
     spec:
       containers:
       - args:
+        - --gcs-upload-secret-name=gce-sa-credentials-gcs-private
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --lease-server-credentials-file=/etc/boskos/credentials
@@ -96,6 +97,7 @@ presubmits:
     spec:
       containers:
       - args:
+        - --gcs-upload-secret-name=gce-sa-credentials-gcs-private
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --lease-server-credentials-file=/etc/boskos/credentials
@@ -172,6 +174,7 @@ presubmits:
     spec:
       containers:
       - args:
+        - --gcs-upload-secret-name=gce-sa-credentials-gcs-private
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --lease-server-credentials-file=/etc/boskos/credentials
@@ -248,6 +251,7 @@ presubmits:
     spec:
       containers:
       - args:
+        - --gcs-upload-secret-name=gce-sa-credentials-gcs-private
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --lease-server-credentials-file=/etc/boskos/credentials
@@ -324,6 +328,7 @@ presubmits:
     spec:
       containers:
       - args:
+        - --gcs-upload-secret-name=gce-sa-credentials-gcs-private
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --lease-server-credentials-file=/etc/boskos/credentials
@@ -400,6 +405,7 @@ presubmits:
     spec:
       containers:
       - args:
+        - --gcs-upload-secret-name=gce-sa-credentials-gcs-private
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --lease-server-credentials-file=/etc/boskos/credentials
@@ -478,6 +484,7 @@ presubmits:
     spec:
       containers:
       - args:
+        - --gcs-upload-secret-name=gce-sa-credentials-gcs-private
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --lease-server-credentials-file=/etc/boskos/credentials
@@ -556,6 +563,7 @@ presubmits:
     spec:
       containers:
       - args:
+        - --gcs-upload-secret-name=gce-sa-credentials-gcs-private
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --lease-server-credentials-file=/etc/boskos/credentials
@@ -634,6 +642,7 @@ presubmits:
     spec:
       containers:
       - args:
+        - --gcs-upload-secret-name=gce-sa-credentials-gcs-private
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --lease-server-credentials-file=/etc/boskos/credentials
@@ -710,6 +719,7 @@ presubmits:
     spec:
       containers:
       - args:
+        - --gcs-upload-secret-name=gce-sa-credentials-gcs-private
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --lease-server-credentials-file=/etc/boskos/credentials
@@ -786,6 +796,7 @@ presubmits:
     spec:
       containers:
       - args:
+        - --gcs-upload-secret-name=gce-sa-credentials-gcs-private
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --lease-server-credentials-file=/etc/boskos/credentials
@@ -862,6 +873,7 @@ presubmits:
     spec:
       containers:
       - args:
+        - --gcs-upload-secret-name=gce-sa-credentials-gcs-private
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --lease-server-credentials-file=/etc/boskos/credentials
@@ -938,6 +950,7 @@ presubmits:
     spec:
       containers:
       - args:
+        - --gcs-upload-secret-name=gce-sa-credentials-gcs-private
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --lease-server-credentials-file=/etc/boskos/credentials
@@ -1014,6 +1027,7 @@ presubmits:
     spec:
       containers:
       - args:
+        - --gcs-upload-secret-name=gce-sa-credentials-gcs-private
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --lease-server-credentials-file=/etc/boskos/credentials
@@ -1090,6 +1104,7 @@ presubmits:
     spec:
       containers:
       - args:
+        - --gcs-upload-secret-name=gce-sa-credentials-gcs-private
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --lease-server-credentials-file=/etc/boskos/credentials
@@ -1166,6 +1181,7 @@ presubmits:
     spec:
       containers:
       - args:
+        - --gcs-upload-secret-name=gce-sa-credentials-gcs-private
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --lease-server-credentials-file=/etc/boskos/credentials
@@ -1242,6 +1258,7 @@ presubmits:
     spec:
       containers:
       - args:
+        - --gcs-upload-secret-name=gce-sa-credentials-gcs-private
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --lease-server-credentials-file=/etc/boskos/credentials
@@ -1318,6 +1335,7 @@ presubmits:
     spec:
       containers:
       - args:
+        - --gcs-upload-secret-name=gce-sa-credentials-gcs-private
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --lease-server-credentials-file=/etc/boskos/credentials
@@ -1394,6 +1412,7 @@ presubmits:
     spec:
       containers:
       - args:
+        - --gcs-upload-secret-name=gce-sa-credentials-gcs-private
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --oauth-token-path=/usr/local/github-credentials/oauth
@@ -1452,6 +1471,7 @@ presubmits:
     spec:
       containers:
       - args:
+        - --gcs-upload-secret-name=gce-sa-credentials-gcs-private
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --oauth-token-path=/usr/local/github-credentials/oauth
@@ -1510,6 +1530,7 @@ presubmits:
     spec:
       containers:
       - args:
+        - --gcs-upload-secret-name=gce-sa-credentials-gcs-private
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --oauth-token-path=/usr/local/github-credentials/oauth
