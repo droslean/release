@@ -33,9 +33,9 @@ plugins:
     - wip
     - yuks
 
-config_updater:
-  maps:
-    cluster/prow/config/config.yaml:
-      name: config
-    cluster/prow/config/plugins.yaml:
-      name: plugins
+external_plugins:
+  ginbits:
+  - name: needs-rebase
+    events:
+      - issue_comment
+      - pull_request
