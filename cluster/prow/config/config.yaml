@@ -1,3 +1,5 @@
+pod_namespace: ci
+prowjob_namespace: ci
 tide:
   sync_period: 2m
   queries:  
