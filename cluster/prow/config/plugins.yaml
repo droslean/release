@@ -1,0 +1,41 @@
+plugins:
+  ginbits:
+    plugins:
+    - approve
+    - assign
+    - blunderbuss
+    - cat
+    - cla
+    - dog
+    - golint
+    - goose
+    - heart
+    - help
+    - hold
+    - invalidcommitmsg
+    - label
+    - lgtm
+    - lifecycle
+    - milestoneapplier
+    - owners-label
+    - pony
+    - retitle
+    - shrug
+    - sigmention
+    - size
+    - skip
+    - slackevents
+    - transfer-issue
+    - trick-or-treat
+    - trigger
+    - verify-owners
+    - welcome
+    - wip
+    - yuks
+
+config_updater:
+  maps:
+    cluster/prow/config/config.yaml:
+      name: config
+    cluster/prow/config/plugins.yaml:
+      name: plugins

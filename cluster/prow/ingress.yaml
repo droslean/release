@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  namespace: ci
+  name: prow-ingress
+spec:
+  rules:
+  - host: k8s.ginbits.com
+    http:
+      paths:
+      - path: /hook
+        backend:
+          serviceName: hook
+          servicePort: 8888
