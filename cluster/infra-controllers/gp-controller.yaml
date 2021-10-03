@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gp-controller
+  namespace: infra
+  labels:
+    app: gp-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gp-controller
+  template:
+    metadata:
+      labels:
+        app: gp-controller
+    spec:
+      imagePullSecrets:
+      - name: regcred      
+      containers:
+      - name: gp-controller
+        image: ghcr.io/ginbits/infra-controllers/gp-controller:master
+        imagePullPolicy: Always
+        args:
+          - --mysql-address=ginbits-db-vtgate-41780ab4.vitess
+          - --port=3306
+          - --user=user
+          - --db-name=ginbits
+          - --namespace=infra
+          - --secret-path=/etc/secrets/db-secret
+          - --bolt-db-path=/etc/cache/bolt.db
+        volumeMounts:
+        - mountPath: /etc/cache
+          name: cache          
+        - mountPath: /etc/secrets
+          name: db-secret
+      serviceAccount: gp-controller
+      volumes:
+      - name: cache
+        emptyDir: {}
+      - name: db-secret
+        secret:
+          secretName: db-secret
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: gp-controller
+  namespace: infra
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: gp-controller-admin
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: gp-access
+subjects:
+- kind: ServiceAccount
+  name: gp-controller
+  namespace: infra
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: gp-access
+rules:
+  - apiGroups:
+      - "ginbits.com"
+    resources:
+      - gamblingproducts
+    verbs:
+      - '*'
