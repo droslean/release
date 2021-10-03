@@ -37,7 +37,8 @@ spec:
       serviceAccount: gp-controller
       volumes:
       - name: cache
-        emptyDir: {}
+        persistentVolumeClaim:
+          claimName: gp-controller-cache
       - name: db-secret
         secret:
           secretName: db-secret
@@ -72,3 +73,15 @@ rules:
       - gamblingproducts
     verbs:
       - '*'
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gp-controller-cache
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: do-block-storage
