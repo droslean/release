@@ -32,10 +32,26 @@ plugins:
     - welcome
     - wip
     - yuks
-
 external_plugins:
   ginbits:
   - name: needs-rebase
     events:
       - issue_comment
       - pull_request
+config_updater:
+  maps:
+    config/jobs/**/*-master-periodics.yaml:
+      namespace: ci
+      name: job-config
+    config/jobs/**/*-master-postsubmits.yaml:
+      namespace: ci
+      name: job-config
+    config/jobs/**/*-master-presubmits.yaml:
+      namespace: ci
+      name: job-config
+    cluster/prow/config/config.yaml:
+      namespace: ci
+      name: config
+    cluster/prow/config/plugins.yaml:
+      namespace: ci
+      name: plugins
