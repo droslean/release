@@ -1,0 +1,21 @@
+presubmits:
+  ginbits/infra-controllers:
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/unit
+    decorate: true
+    labels:
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-openshift-release-master-unit
+    rerun_command: /test unit
+    spec:
+      containers:
+      - args:
+        - test
+        command:
+        - make
+        image: centos:7
+        imagePullPolicy: Always
+    trigger: (?m)^/test( | .* )unit,?($|\s.*)
