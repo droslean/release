@@ -31,6 +31,7 @@ spec:
         - --github-endpoint=https://api.github.com
         - --github-token-path=/etc/github/oauth
         - --config-path=/etc/config/config.yaml
+        - --job-config-path=/etc/job-config
         ports:
         - name: http
           containerPort: 8888
@@ -48,6 +49,9 @@ spec:
           readOnly: true
         - name: plugins
           mountPath: /etc/plugins
+          readOnly: true
+        - name: job-config
+          mountPath: /etc/job-config
           readOnly: true
         livenessProbe:
           httpGet:
@@ -75,3 +79,6 @@ spec:
       - name: plugins
         configMap:
           name: plugins
+      - name: job-config
+        configMap:
+          name: job-config
