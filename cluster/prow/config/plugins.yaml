@@ -6,6 +6,7 @@ plugins:
     - blunderbuss
     - cat
     - cla
+    - config-updater
     - dog
     - golint
     - goose
