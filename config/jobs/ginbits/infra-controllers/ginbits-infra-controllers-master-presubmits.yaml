@@ -18,6 +18,6 @@ presubmits:
         - test
         command:
         - make
-        image: centos:7
+        image: golang:1.17.1
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )unit,?($|\s.*)
