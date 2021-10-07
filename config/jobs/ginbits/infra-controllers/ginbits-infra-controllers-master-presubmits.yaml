@@ -15,7 +15,7 @@ presubmits:
     spec:
       containers:
       - args:
-        - test
+        - unit
         command:
         - make
         image: golang:1.17.1
@@ -39,6 +39,6 @@ presubmits:
         - lint
         command:
         - make
-        image: golangci/golangci-lint:v1.42-alpine
+        image: golangci/golangci-lint:v1.42
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )lint,?($|\s.*)
