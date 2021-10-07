@@ -40,13 +40,13 @@ external_plugins:
       - pull_request
 config_updater:
   maps:
-    config/jobs/**/*-master-periodics.yaml:
+    config/jobs/**/**/*-master-periodics.yaml:
       namespace: ci
       name: job-config
-    config/jobs/**/*-master-postsubmits.yaml:
+    config/jobs/**/**/*-master-postsubmits.yaml:
       namespace: ci
       name: job-config
-    config/jobs/**/*-master-presubmits.yaml:
+    config/jobs/**/**/*-master-presubmits.yaml:
       namespace: ci
       name: job-config
     cluster/prow/config/config.yaml:
