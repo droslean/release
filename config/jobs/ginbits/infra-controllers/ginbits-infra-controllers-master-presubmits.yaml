@@ -21,3 +21,24 @@ presubmits:
         image: golang:1.17.1
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )unit,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/lint
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-release-master-lint
+    rerun_command: /test lint
+    spec:
+      containers:
+      - args:
+        - lint
+        command:
+        - make
+        image: golangci/golangci-lint:v1.42-alpine
+        imagePullPolicy: Always
+    trigger: (?m)^/test( | .* )lint,?($|\s.*)
