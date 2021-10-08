@@ -38,17 +38,41 @@ plank:
 deck:
   spyglass:
     lenses:
+    lenses:
     - lens:
         name: metadata
-      optional_files:
-      - podinfo.json|prowjob.json
       required_files:
-      - started.json|finished.json
+      - ^(?:started|finished)\.json$
+      optional_files:
+      - ^(?:podinfo|prowjob)\.json$
     - lens:
         name: buildlog
+        config:
+          highlight_regexes:
+          - timed out
+          - "ERROR:"
+          - (FAIL|Failure \[)\b
+          - panic\b
+          - ^E\d{4} \d\d:\d\d:\d\d\.\d\d\d]
+          # This highlights the start of bazel tests/runs to skip go importing noise.
+          - "^INFO: Analyzed \\d+ targets"
       required_files:
-      - ^build-log.txt
+        - ^.*build-log\.txt$
+    - lens:
+        name: junit
+      required_files:
+        - ^artifacts(/.*/|/)junit.*\.xml$ # https://regex101.com/r/vCSegS/1
+    - lens:
+        name: coverage
+      required_files:
+        - ^artifacts/filtered\.cov$
+      optional_files:
+        - ^artifacts/filtered\.html$
     - lens:
         name: podinfo
       required_files:
-      - podinfo.json
+        - ^podinfo\.json$
+    - lens:
+        name: links
+      required_files:
+        - artifacts/.*\.link\.txt
