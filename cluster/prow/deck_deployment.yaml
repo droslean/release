@@ -32,7 +32,7 @@ spec:
         args:
         - --provider=github
         - --upstream=http://localhost:8080
-        - --github-org="ginbits"
+        - --github-user=droslean,georbast,ioannis-michelakis,alysandratouginbits,angelikiSol,FotisVS,gregpavl,theogriv,toxicos
         - --http-address=0.0.0.0:4180
         - --cookie-secure=false
         - --redirect-url=https://k8s.ginbits.com/oauth2/callback
@@ -72,6 +72,7 @@ spec:
         - --github-token-path=/etc/github/oauth
         - --github-oauth-config-file=/etc/github/config/config.json
         - --cookie-secret=/etc/cookie/cookie
+        - --s3-credentials-file=/etc/s3-credentials/service-account.json
         - --plugin-config=/etc/plugins/plugins.yaml
         env:
         volumeMounts:
@@ -92,6 +93,9 @@ spec:
           readOnly: true
         - name: plugins
           mountPath: /etc/plugins
+          readOnly: true
+        - name: s3-credentials
+          mountPath: /etc/s3-credentials
           readOnly: true
         livenessProbe:
           httpGet:
@@ -125,3 +129,6 @@ spec:
       - name: plugins
         configMap:
           name: plugins
+      - name: s3-credentials
+        secret:
+          secretName: credentials-aws-publisher
