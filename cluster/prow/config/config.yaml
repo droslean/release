@@ -35,3 +35,20 @@ plank:
     ne .Spec.Refs.Repo "origin"}}/{{.Spec.Refs.Org}}_{{.Spec.Refs.Repo}}{{end}}{{if
     eq .Spec.Type "presubmit"}}/{{with index .Spec.Refs.Pulls 0}}{{.Number}}{{end}}{{else
     if eq .Spec.Type "batch"}}/batch{{end}}/{{.Spec.Job}}/{{.Status.BuildID}}/
+deck:
+  spyglass:
+    lenses:
+    - lens:
+        name: metadata
+      optional_files:
+      - podinfo.json|prowjob.json
+      required_files:
+      - started.json|finished.json
+    - lens:
+        name: buildlog
+      required_files:
+      - ^build-log.txt
+    - lens:
+        name: podinfo
+      required_files:
+      - podinfo.json
