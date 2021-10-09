@@ -36,6 +36,10 @@ plank:
     eq .Spec.Type "presubmit"}}/{{with index .Spec.Refs.Pulls 0}}{{.Number}}{{end}}{{else
     if eq .Spec.Type "batch"}}/batch{{end}}/{{.Spec.Job}}/{{.Status.BuildID}}/
 deck:
+  branding:
+    favicon: /static/extensions/favicon.ico
+    header_color: darkcyan
+    logo: /static/extensions/logo.png
   spyglass:
     lenses:
     lenses:

@@ -76,6 +76,9 @@ spec:
         - --plugin-config=/etc/plugins/plugins.yaml
         env:
         volumeMounts:
+        - name: extensions
+          mountPath: /static/extensions
+          readOnly: true
         - name: oauth-config
           mountPath: /etc/github/config
           readOnly: true
@@ -111,6 +114,9 @@ spec:
           periodSeconds: 3
           timeoutSeconds: 600
       volumes:
+      - name: extensions
+        configMap:
+          name: deck-static
       - name: oauth-config
         secret:
           secretName: github-app-credentials
