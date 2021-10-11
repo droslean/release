@@ -42,3 +42,31 @@ presubmits:
         image: golangci/golangci-lint:v1.42
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )lint,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/commitlint
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-release-master-commitlint
+    rerun_command: /test commitlint
+    spec:
+      containers:
+      - args:
+        - --config=/etc/commitlint/commitlint.config.js
+        - --from=HEAD~$(git --no-pager rev-list master..HEAD --count)
+        image: gtramontina/commitlint:8.3.5
+        imagePullPolicy: Always
+      volumeMounts:
+      - name: commitlint-config
+        mountPath: /etc/commitlint
+        readOnly: true
+    volumes:
+    - name: commitlint-config
+      configMap:
+        name: commitlint-config
+    trigger: (?m)^/test( | .* )commitlint,?($|\s.*)
