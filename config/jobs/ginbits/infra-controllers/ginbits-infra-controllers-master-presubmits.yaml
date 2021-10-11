@@ -61,12 +61,12 @@ presubmits:
         - --from=HEAD~$(git --no-pager rev-list master..HEAD --count)
         image: gtramontina/commitlint:8.3.5
         imagePullPolicy: Always
-      volumeMounts:
+        volumeMounts:
+        - name: commitlint-config
+          mountPath: /etc/commitlint
+          readOnly: true
+      volumes:
       - name: commitlint-config
-        mountPath: /etc/commitlint
-        readOnly: true
-    volumes:
-    - name: commitlint-config
-      configMap:
-        name: commitlint-config
+        configMap:
+          name: commitlint-config
     trigger: (?m)^/test( | .* )commitlint,?($|\s.*)
