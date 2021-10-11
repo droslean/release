@@ -56,3 +56,6 @@ config_updater:
     cluster/prow/config/plugins.yaml:
       namespace: ci
       name: plugins
+    cluster/commitlint/commitlint.config.js:
+      namespace: ci
+      name: commitlint-config
