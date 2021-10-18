@@ -59,3 +59,6 @@ config_updater:
     cluster/commitlint/commitlint.config.js:
       namespace: ci
       name: commitlint-config
+    cluster/phpcsfixer/.php_cs.dist:
+      namespace: ci
+      name: phpcsfixer-config
