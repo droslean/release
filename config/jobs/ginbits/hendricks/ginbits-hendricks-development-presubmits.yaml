@@ -30,3 +30,31 @@ presubmits:
         configMap:
           name: commitlint-config
     trigger: (?m)^/test( | .* )commitlint,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - development
+    context: ci/prow/phpcsfixer
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-hendricks-development-phpcsfixer
+    rerun_command: /test php-cs-fixer fix
+    spec:
+      containers:
+      - args:
+        - --config=/var/tmp/phpcsfixer/.php_cs.dist
+        command:
+        - php-cs-fixer fix
+        image: herloct/php-cs-fixer:2.13.0
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: phpcsfixer-config
+          mountPath: /var/tmp/phpcsfixer
+      volumes:
+      - name: phpcsfixer-config
+        configMap:
+          name: phpcsfixer-config
+    trigger: (?m)^/test( | .* )php-cs-fixer,?($|\s.*)
