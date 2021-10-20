@@ -1,0 +1,32 @@
+presubmits:
+  ginbits/hendricks:
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - development
+    context: ci/prow/commitlint
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-hendricks-development-commitlint
+    rerun_command: /test commitlint
+    spec:
+      containers:
+      - args:
+        - --config=/var/tmp/commitlint/commitlint.config.js
+        - --from=$(PULL_BASE_SHA)
+        - --to=$(PULL_PULL_SHA)
+        command:
+        - commitlint
+        image: gtramontina/commitlint:8.3.5
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: commitlint-config
+          mountPath: /var/tmp/commitlint
+      volumes:
+      - name: commitlint-config
+        configMap:
+          name: commitlint-config
+    trigger: (?m)^/test( | .* )commitlint,?($|\s.*)
