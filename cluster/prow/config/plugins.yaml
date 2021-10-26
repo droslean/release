@@ -39,6 +39,11 @@ external_plugins:
     events:
       - issue_comment
       - pull_request
+  - endpoint: http://cherrypicker
+    events:
+    - issue_comment
+    - pull_request
+    name: cherrypicker
 config_updater:
   maps:
     config/jobs/**/**/*-master-periodics.yaml:
