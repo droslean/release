@@ -41,20 +41,19 @@ presubmits:
         key: oauth
         name: github-cloner
     name: pull-ci-ginbits-hendricks-development-phpcsfixer
-    rerun_command: /test php-cs-fixer fix
+    rerun_command: /test php-cs-fixer
     spec:
       containers:
       - args:
-        - --config=/var/tmp/phpcsfixer/.php_cs.dist
+        - fix
+        - -vvv
+        - --diff
+        - --dry-run
+        - --no-ansi
+        - --no-interaction
+        - --using-cache=no
         command:
-        - php-cs-fixer fix
+        - php-cs-fixer
         image: herloct/php-cs-fixer:2.13.0
         imagePullPolicy: Always
-        volumeMounts:
-        - name: phpcsfixer-config
-          mountPath: /var/tmp/phpcsfixer
-      volumes:
-      - name: phpcsfixer-config
-        configMap:
-          name: phpcsfixer-config
     trigger: (?m)^/test( | .* )php-cs-fixer,?($|\s.*)
