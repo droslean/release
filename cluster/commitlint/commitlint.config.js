@@ -20,6 +20,7 @@ module.exports = {
 			'always',
 			[
 				'build',
+				'bug',
 				'chore',
 				'ci',
 				'docs',
@@ -48,6 +49,11 @@ module.exports = {
 						title: 'Bug Fixes',
 						emoji: '🐛',
 					},
+					bug: {
+						description: 'The commit is related to a bug',
+						title: 'Bug Fixes',
+						emoji: '🐛',
+					},					
 					docs: {
 						description: 'Documentation only changes',
 						title: 'Documentation',
