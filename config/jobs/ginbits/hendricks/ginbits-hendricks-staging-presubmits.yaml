@@ -1,0 +1,60 @@
+presubmits:
+  ginbits/hendricks:
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - staging
+    context: ci/prow/commitlint
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-hendricks-staging-commitlint
+    rerun_command: /test commitlint
+    spec:
+      containers:
+      - args:
+        - --config=/var/tmp/commitlint/commitlint.config.js
+        - --from=$(PULL_BASE_SHA)
+        - --to=$(PULL_PULL_SHA)
+        command:
+        - commitlint
+        image: gtramontina/commitlint:8.3.5
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: commitlint-config
+          mountPath: /var/tmp/commitlint
+      volumes:
+      - name: commitlint-config
+        configMap:
+          name: commitlint-config
+    trigger: (?m)^/test( | .* )commitlint,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - staging
+    context: ci/prow/phpcsfixer
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-hendricks-staging-phpcsfixer
+    rerun_command: /test php-cs-fixer fix
+    spec:
+      containers:
+      - args:
+        - --config=/var/tmp/phpcsfixer/.php_cs.dist
+        command:
+        - php-cs-fixer fix
+        image: herloct/php-cs-fixer:2.13.0
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: phpcsfixer-config
+          mountPath: /var/tmp/phpcsfixer
+      volumes:
+      - name: phpcsfixer-config
+        configMap:
+          name: phpcsfixer-config
+    trigger: (?m)^/test( | .* )php-cs-fixer,?($|\s.*)
