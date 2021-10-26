@@ -55,6 +55,15 @@ config_updater:
     config/jobs/**/**/*-master-presubmits.yaml:
       namespace: ci
       name: job-config
+    config/jobs/**/**/*-development-periodics.yaml:
+      namespace: ci
+      name: job-config
+    config/jobs/**/**/*-development-postsubmits.yaml:
+      namespace: ci
+      name: job-config
+    config/jobs/**/**/*-development-presubmits.yaml:
+      namespace: ci
+      name: job-config
     cluster/prow/config/config.yaml:
       namespace: ci
       name: config
