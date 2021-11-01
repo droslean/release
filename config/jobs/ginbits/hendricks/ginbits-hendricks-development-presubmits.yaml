@@ -54,6 +54,6 @@ presubmits:
         - --using-cache=no
         command:
         - php-cs-fixer
-        image: herloct/php-cs-fixer:2.13.0
+        image: wiseartisans/php-cs-fixer:2
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )php-cs-fixer,?($|\s.*)
