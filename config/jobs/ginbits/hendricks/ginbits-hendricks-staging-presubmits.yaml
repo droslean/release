@@ -41,7 +41,7 @@ presubmits:
         key: oauth
         name: github-cloner
     name: pull-ci-ginbits-hendricks-staging-phpcsfixer
-    rerun_command: /test php-cs-fixer fix
+    rerun_command: /test php-cs-fixer
     spec:
       containers:
       - args:
@@ -54,6 +54,6 @@ presubmits:
         - --using-cache=no
         command:
         - php-cs-fixer
-        image: herloct/php-cs-fixer:2.13.0
+        image: wiseartisans/php-cs-fixer:2
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )php-cs-fixer,?($|\s.*)
