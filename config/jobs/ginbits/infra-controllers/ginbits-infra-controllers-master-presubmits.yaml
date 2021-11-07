@@ -39,7 +39,7 @@ presubmits:
         - lint
         command:
         - make
-        image: golangci/golangci-lint:v1.42
+        image: golangci/golangci-lint:v1.43
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )lint,?($|\s.*)
   - agent: kubernetes
