@@ -41,6 +41,13 @@ presubmits:
         - make
         image: golangci/golangci-lint:v1.42
         imagePullPolicy: Always
+        resources:
+          requests:
+            memory: 64Mi
+            cpu: 250m
+          limits:
+            memory: 128Mi
+            cpu: 500m
     trigger: (?m)^/test( | .* )lint,?($|\s.*)
   - agent: kubernetes
     always_run: true
