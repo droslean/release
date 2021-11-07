@@ -18,6 +18,7 @@ plugins:
     - lgtm
     - lifecycle
     - milestoneapplier
+    - override
     - owners-label
     - pony
     - retitle
