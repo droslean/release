@@ -32,7 +32,7 @@ spec:
         args:
         - --provider=github
         - --upstream=http://localhost:8080
-        - --github-user=droslean,georbast,ioannis-michelakis,alysandratouginbits,angelikiSol,FotisVS,gregpavl,theogriv,toxicos
+        - --github-user=droslean,georbast,ioannis-michelakis,alysandratouginbits,angelikiSol,FotisVS,gregpavl,theogriv,toxicos,krypotos,mpuica
         - --http-address=0.0.0.0:4180
         - --redirect-url=https://prow.ginbits.com/oauth2/callback
         - --email-domain=*
