@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hendricks
+  namespace: infra-stage
+  labels:
+    app: hendricks
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hendricks
+  template:
+    metadata:
+      labels:
+        app: hendricks
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: hendricks
+        image: ghcr.io/ginbits/hendricks/hendricks:staging
+        imagePullPolicy: Always
+        volumeMounts:
+        - mountPath: /var/www/html/.env
+          name: hendricks-env
+          subPath: .env
+      volumes:
+      - name: hendricks-env
+        secret:
+          secretName: hendricks-env
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hendricks
+  namespace: infra-stage
+spec:
+  selector:
+    app: hendricks  
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+  type: NodePort
