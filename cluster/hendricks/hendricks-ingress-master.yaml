@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hendricks-ingress-prod
+  namespace: infra
+spec:
+  rules:
+  - host: hendricks.ginbits.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: hendricks
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
