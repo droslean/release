@@ -57,3 +57,28 @@ presubmits:
         image: wiseartisans/php-cs-fixer:2
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )php-cs-fixer,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - staging
+    context: ci/prow/phpunit
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-hendricks-staging-phpunit
+    rerun_command: /test phpunit
+    spec:
+      containers:
+      - args:
+        - --configuration=phpunit_deploy.xml
+        - --group=deploy
+        - --verbose
+        - --no-interaction
+        - --do-not-cache-result
+        command:
+        - phpunit
+        image: dcycle/phpunit:1
+        imagePullPolicy: Always
+    trigger: (?m)^/test( | .* )phpunit,?($|\s.*)
