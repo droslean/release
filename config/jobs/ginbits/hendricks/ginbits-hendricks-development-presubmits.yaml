@@ -78,7 +78,7 @@ presubmits:
         - --no-interaction
         - --do-not-cache-result
         command:
-        - phpunit
+        - /phpunit/vendor/phpunit/phpunit/phpunit
         image: dcycle/phpunit:1
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )phpunit,?($|\s.*)
