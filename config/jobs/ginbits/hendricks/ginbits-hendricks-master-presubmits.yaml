@@ -72,13 +72,9 @@ presubmits:
     spec:
       containers:
       - args:
-        - --configuration=phpunit_deploy.xml
-        - --group=deploy
-        - --verbose
-        - --no-interaction
-        - --do-not-cache-result
-        command:
         - phpunit
+        command:
+        - make
         image: jitesoft/phpunit:7.4
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )phpunit,?($|\s.*)
