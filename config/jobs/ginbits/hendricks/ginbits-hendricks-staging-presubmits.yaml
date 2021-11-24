@@ -71,10 +71,8 @@ presubmits:
     rerun_command: /test phpunit
     spec:
       containers:
-      - args:
-        - phpunit
-        command:
-        - make
+      - command:
+        - ./scripts/phpunit.sh
         image: jitesoft/phpunit:7.4
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )phpunit,?($|\s.*)
