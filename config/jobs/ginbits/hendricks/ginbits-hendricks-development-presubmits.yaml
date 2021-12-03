@@ -76,3 +76,49 @@ presubmits:
         image: jitesoft/phpunit:7.4
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )phpunit,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - development
+    context: ci/prow/phpmd
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-hendricks-development-phpmd
+    rerun_command: /test phpmd
+    spec:
+      containers:
+      - args:
+        - app/
+        - ansi
+        - phpmd_rulesets.xml
+        command:
+        - phpmd
+        image: phpqa/phpmd:2.6.0
+        imagePullPolicy: Always
+    trigger: (?m)^/test( | .* )phpmd,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - development
+    context: ci/prow/phpcpd
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-hendricks-development-phpcpd
+    rerun_command: /test phpcpd
+    spec:
+      containers:
+      - args:
+        - --min-lines 30
+        - --verbose
+        - app/
+        command:
+        - phpcpd
+        image: phpqa/phpcpd:latest
+        imagePullPolicy: Always
+    trigger: (?m)^/test( | .* )phpcpd,?($|\s.*)
