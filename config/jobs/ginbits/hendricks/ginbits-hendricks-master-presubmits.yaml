@@ -99,3 +99,26 @@ presubmits:
         image: phpqa/phpmd:2.6.0
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )phpmd,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/phpcpd
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-hendricks-master-phpcpd
+    rerun_command: /test phpcpd
+    spec:
+      containers:
+      - args:
+        - --min-lines 30
+        - --verbose
+        - app/
+        command:
+        - phpcpd
+        image: phpqa/phpcpd:latest
+        imagePullPolicy: Always
+    trigger: (?m)^/test( | .* )phpcpd,?($|\s.*)
