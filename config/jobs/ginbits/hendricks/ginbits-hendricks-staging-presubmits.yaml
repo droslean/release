@@ -96,7 +96,7 @@ presubmits:
         - phpmd_rulesets.xml
         command:
         - phpmd
-        image: phpqa/phpmd:2.6.0
+        image: elnebuloso/php-phpmd:latest
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )phpmd,?($|\s.*)
   - agent: kubernetes
@@ -114,11 +114,11 @@ presubmits:
     spec:
       containers:
       - args:
-        - --min-lines 30
+        - --min-lines=30
         - --verbose
         - app/
         command:
         - phpcpd
-        image: phpqa/phpcpd:latest
+        image: ajardin/phpcpd:latest
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )phpcpd,?($|\s.*)
