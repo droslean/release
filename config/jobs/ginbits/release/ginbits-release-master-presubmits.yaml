@@ -46,7 +46,7 @@ presubmits:
       containers:
       - args:
         - -c
-        - cluster/yamllint/yamllint.conf
+        - services/yamllint/yamllint.conf
         - config
         - cluster
         command:
