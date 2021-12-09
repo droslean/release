@@ -16,7 +16,7 @@ spec:
         app: gp-controller
     spec:
       imagePullSecrets:
-      - name: regcred      
+      - name: regcred
       containers:
       - name: gp-controller
         image: ghcr.io/ginbits/infra-controllers/gp-controller:master
@@ -31,7 +31,7 @@ spec:
           - --bolt-db-path=/etc/cache/bolt.db
         volumeMounts:
         - mountPath: /etc/cache
-          name: cache          
+          name: cache
         - mountPath: /etc/secrets
           name: db-secret
       serviceAccount: gp-controller

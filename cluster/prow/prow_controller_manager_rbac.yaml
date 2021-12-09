@@ -62,7 +62,7 @@ rules:
   - list
   - watch
   - get
-  - patch  
+  - patch
 ---
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1

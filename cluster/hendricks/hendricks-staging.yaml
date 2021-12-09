@@ -37,7 +37,7 @@ metadata:
   namespace: infra-stage
 spec:
   selector:
-    app: hendricks  
+    app: hendricks
   ports:
   - name: http
     port: 80

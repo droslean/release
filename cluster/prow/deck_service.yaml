@@ -18,5 +18,5 @@ spec:
     protocol: TCP
   - name: oauth-proxy
     port: 4180
-    protocol: TCP    
+    protocol: TCP
   type: NodePort
