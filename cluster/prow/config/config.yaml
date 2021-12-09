@@ -4,7 +4,7 @@ tide:
   rebase_label: tide/merge-method-rebase
   squash_label: tide/merge-method-squash
   sync_period: 2m
-  queries:  
+  queries:
   - orgs:
     - ginbits
     labels:
@@ -43,7 +43,6 @@ deck:
     header_color: darkcyan
     logo: /static/extensions/logo.png
   spyglass:
-    lenses:
     lenses:
     - lens:
         name: metadata
