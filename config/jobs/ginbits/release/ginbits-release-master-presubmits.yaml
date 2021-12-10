@@ -53,8 +53,4 @@ presubmits:
         - yamllint
         image: quay.io/kubermatic/yamllint:0.1
         imagePullPolicy: Always
-        name: ""
-        resources:
-          requests:
-            cpu: "1"
     trigger: (?m)^/test( | .* )yamllint,?($|\s.*)
