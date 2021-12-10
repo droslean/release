@@ -25,10 +25,16 @@ spec:
         - mountPath: /var/www/html/.env
           name: hendricks-env
           subPath: .env
+        - mountPath: /usr/local/etc/php/php.ini
+          name: php-ini
+          subPath: php.ini
       volumes:
       - name: hendricks-env
         secret:
           secretName: hendricks-env
+      - name: php-ini
+        configMap:
+          name: php-ini
 ---
 apiVersion: v1
 kind: Service
