@@ -83,3 +83,8 @@ config_updater:
     cluster/commitlint/commitlint.config.js:
       namespace: ci
       name: commitlint-config
+label:
+  additional_labels:
+  - tide/merge-method-merge
+  - tide/merge-method-rebase
+  - tide/merge-method-squash
