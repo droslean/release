@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ginsul
+  namespace: infra-stage
+  labels:
+    app: ginsul
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ginsul
+  template:
+    metadata:
+      labels:
+        app: ginsul
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: ginsul
+        image: ghcr.io/ginbits/ginsul/ginsul:staging
+        imagePullPolicy: Always
+        volumeMounts:
+        - mountPath: /app/.env
+          name: ginsul-env
+          subPath: .env
+      volumes:
+      - name: ginsul-env
+        secret:
+          secretName: ginsul-env
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ginsul
+  namespace: infra-stage
+spec:
+  selector:
+    app: ginsul
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+  type: NodePort
