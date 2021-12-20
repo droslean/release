@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.allow-http: "false"
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+  name: nodepositcrypto_com-ingress
+  namespace: infra-stage
+spec:
+  rules:
+  - host: nodepositcrypto.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: nodepositcrypto_com-service
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
