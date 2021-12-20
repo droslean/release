@@ -5,7 +5,7 @@ metadata:
     kubernetes.io/ingress.allow-http: "false"
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/backend-protocol: HTTPS
-  name: nodepositcrypto_com-ingress
+  name: nodepositcrypto-com-ingress
   namespace: affwebsites
 spec:
   rules:
@@ -14,8 +14,8 @@ spec:
       paths:
       - backend:
           service:
-            name: nodepositcrypto_com-service
+            name: nodepositcrypto-com
             port:
-              number: 80
+              number: 8080
         path: /
         pathType: Prefix
