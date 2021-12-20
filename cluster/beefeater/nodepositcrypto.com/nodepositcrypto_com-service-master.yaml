@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodepositcrypto_com
+  namespace: affwebsites
+  labels:
+    app: nodepositcrypto_com
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodepositcrypto_com
+  template:
+    metadata:
+      labels:
+        app: nodepositcrypto_com
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: nodepositcrypto_com
+        image: ghcr.io/ginbits/beefeater/nodepositcrypto.com:master
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodepositcrypto_com
+  namespace: affwebsites
+spec:
+  selector:
+    app: nodepositcrypto_com
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+  type: NodePort
