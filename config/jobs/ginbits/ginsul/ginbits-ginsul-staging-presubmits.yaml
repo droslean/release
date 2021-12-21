@@ -45,6 +45,8 @@ presubmits:
     spec:
       containers:
       - image: cytopia/eslint
+        args:
+          - .
         command:
         - eslint
         imagePullPolicy: Always
