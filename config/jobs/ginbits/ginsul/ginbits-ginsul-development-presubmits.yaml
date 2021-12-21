@@ -33,7 +33,7 @@ presubmits:
   - agent: kubernetes
     always_run: true
     branches:
-      - development
+    - development
     context: ci/prow/eslint
     decorate: true
     decoration_config:
@@ -44,8 +44,8 @@ presubmits:
     rerun_command: /test eslint
     spec:
       containers:
-        - image: cytopia/eslint
-          command:
-            - eslint
-          imagePullPolicy: Always
+      - image: cytopia/eslint
+        command:
+        - eslint
+        imagePullPolicy: Always
     trigger: (?m)^/test( | .* )eslint,?($|\s.*)
