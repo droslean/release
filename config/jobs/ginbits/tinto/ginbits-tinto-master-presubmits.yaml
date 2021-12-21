@@ -30,3 +30,76 @@ presubmits:
         configMap:
           name: commitlint-config
     trigger: (?m)^/test( | .* )commitlint,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/phpcsfixer
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-tinto-master-phpcsfixer
+    rerun_command: /test php-cs-fixer
+    spec:
+      containers:
+      - args:
+        - fix
+        - -vvv
+        - --diff
+        - --dry-run
+        - --no-ansi
+        - --no-interaction
+        - --using-cache=no
+        command:
+        - php-cs-fixer
+        image: wiseartisans/php-cs-fixer:2
+        imagePullPolicy: Always
+    trigger: (?m)^/test( | .* )php-cs-fixer,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/phpmd
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-tinto-master-phpmd
+    rerun_command: /test phpmd
+    spec:
+      containers:
+      - args:
+        - .
+        - ansi
+        - phpmd_rulesets.xml
+        command:
+        - phpmd
+        image: elnebuloso/php-phpmd:latest
+        imagePullPolicy: Always
+    trigger: (?m)^/test( | .* )phpmd,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/phpcpd
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-tinto-master-phpcpd
+    rerun_command: /test phpcpd
+    spec:
+      containers:
+      - args:
+        - --min-lines=30
+        - --verbose
+        - .
+        command:
+        - phpcpd
+        image: ajardin/phpcpd:latest
+        imagePullPolicy: Always
+    trigger: (?m)^/test( | .* )phpcpd,?($|\s.*)
