@@ -49,3 +49,24 @@ presubmits:
             - eslint
           imagePullPolicy: Always
     trigger: (?m)^/test( | .* )eslint,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - staging
+    context: ci/prow/hadolint
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-ginsul-development-hadolint
+    rerun_command: /test hadolint
+    spec:
+      containers:
+      - image: hadolint/hadolint
+        imagePullPolicy: Always
+        command:
+        - hadolint
+        args:
+        - --verbose
+    trigger: (?m)^/test( | .* )hadolint,?($|\s.*)
