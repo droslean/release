@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wowpotjackpot-org-ingress
+  namespace: affwebsites
+spec:
+  rules:
+  - host: wowpotjackpot.org
+    http:
+      paths:
+      - backend:
+          service:
+            name: wowpotjackpot-org
+            port:
+              number: 8080
+        path: /
+        pathType: Prefix

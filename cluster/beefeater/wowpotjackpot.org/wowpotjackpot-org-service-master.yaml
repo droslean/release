@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wowpotjackpot-org
+  namespace: affwebsites
+  labels:
+    app: wowpotjackpot-org
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wowpotjackpot-org
+  template:
+    metadata:
+      labels:
+        app: wowpotjackpot-org
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: wowpotjackpot_org
+        image: ghcr.io/ginbits/beefeater/wowpotjackpot.org:master
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wowpotjackpot-org
+  namespace: affwebsites
+spec:
+  selector:
+    app: wowpotjackpot-org
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+  type: NodePort
