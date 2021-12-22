@@ -96,3 +96,22 @@ presubmits:
         image: pipelinecomponents/markdownlint
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )markdownlint,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - development
+    context: ci/prow/jest
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-ginsul-development-jest
+    rerun_command: /test jest
+    spec:
+      containers:
+      - image: cfreak/jest
+        command:
+        - jest
+        imagePullPolicy: Always
+    trigger: (?m)^/test( | .* )jest,?($|\s.*)
