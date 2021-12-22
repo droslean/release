@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kazinot-com
+  namespace: affwebsites
+  labels:
+    app: kazinot-com
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kazinot-com
+  template:
+    metadata:
+      labels:
+        app: kazinot-com
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: kazinot_com
+        image: ghcr.io/ginbits/beefeater/kazinot.com:master
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kazinot-com
+  namespace: affwebsites
+spec:
+  selector:
+    app: kazinot-com
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+  type: NodePort
