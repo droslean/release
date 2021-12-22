@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: onlinelegitcasinos-com
+  namespace: affwebsites
+  labels:
+    app: onlinelegitcasinos-com
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: onlinelegitcasinos-com
+  template:
+    metadata:
+      labels:
+        app: onlinelegitcasinos-com
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: onlinelegitcasinos_com
+        image: ghcr.io/ginbits/beefeater/onlinelegitcasinos.com:master
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: onlinelegitcasinos-com
+  namespace: affwebsites
+spec:
+  selector:
+    app: onlinelegitcasinos-com
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+  type: NodePort

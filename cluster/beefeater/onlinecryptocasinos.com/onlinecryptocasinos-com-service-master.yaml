@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: onlinecryptocasinos-com
+  namespace: affwebsites
+  labels:
+    app: onlinecryptocasinos-com
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: onlinecryptocasinos-com
+  template:
+    metadata:
+      labels:
+        app: onlinecryptocasinos-com
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: onlinecryptocasinos_com
+        image: ghcr.io/ginbits/beefeater/onlinecryptocasinos.com:master
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: onlinecryptocasinos-com
+  namespace: affwebsites
+spec:
+  selector:
+    app: onlinecryptocasinos-com
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+  type: NodePort

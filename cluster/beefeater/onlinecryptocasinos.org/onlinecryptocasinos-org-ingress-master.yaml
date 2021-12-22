@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: onlinecryptocasinos-org-ingress
+  namespace: affwebsites
+spec:
+  rules:
+  - host: onlinecryptocasinos.org
+    http:
+      paths:
+      - backend:
+          service:
+            name: onlinecryptocasinos-org
+            port:
+              number: 8080
+        path: /
+        pathType: Prefix
