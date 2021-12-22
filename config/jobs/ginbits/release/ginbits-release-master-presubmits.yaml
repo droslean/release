@@ -54,3 +54,27 @@ presubmits:
         image: quay.io/kubermatic/yamllint:0.1
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )yamllint,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/markdownlint
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-release-master-markdownlint
+    rerun_command: /test markdownlint
+    spec:
+      containers:
+      - args:
+        - -v
+        - -w
+        - -a
+        - .
+        command:
+        - mdl
+        image: pipelinecomponents/markdownlint
+        imagePullPolicy: Always
+    trigger: (?m)^/test( | .* )markdownlint,?($|\s.*)
