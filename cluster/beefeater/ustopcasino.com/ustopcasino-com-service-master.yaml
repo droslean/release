@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ustopcasino-com
+  namespace: affwebsites
+  labels:
+    app: ustopcasino-com
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ustopcasino-com
+  template:
+    metadata:
+      labels:
+        app: ustopcasino-com
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: ustopcasino_com
+        image: ghcr.io/ginbits/beefeater/ustopcasino.com:master
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ustopcasino-com
+  namespace: affwebsites
+spec:
+  selector:
+    app: ustopcasino-com
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+  type: NodePort
