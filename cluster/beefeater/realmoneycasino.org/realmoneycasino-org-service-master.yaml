@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: realmoneycasino-org
+  namespace: affwebsites
+  labels:
+    app: realmoneycasino-org
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: realmoneycasino-org
+  template:
+    metadata:
+      labels:
+        app: realmoneycasino-org
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: realmoneycasino_org
+        image: ghcr.io/ginbits/beefeater/realmoneycasino.org:master
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: realmoneycasino-org
+  namespace: affwebsites
+spec:
+  selector:
+    app: realmoneycasino-org
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+  type: NodePort
