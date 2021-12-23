@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: krakend-ingress
+  annotations:
+    kubernetes.io/ingress.allow-http: "false"
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+spec:
+  rules:
+  - host: api.ginbits.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: krakend-service
+            port:
+              number: 8080
+        path: /
+        pathType: Prefix

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: krakend
+  namespace: infra
+spec:
+  selector:
+    matchLabels:
+      app: krakend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: krakend
+    spec:
+      containers:
+      - name: krakend
+        image: devopsfaith/krakend:1.4.1
+        ports:
+        - containerPort: 8080
+        imagePullPolicy: Always
+        command:
+        - /usr/bin/krakend
+        args:
+        - run
+        - -d
+        - -c
+        - /etc/krakend/krakend.json
+        - -p
+        - "8080"
+        volumeMounts:
+        - name: config
+          mountPath: /etc/krakend
+          readOnly: true
+        - name: tls-secret
+          mountPath: /etc/tls
+          readOnly: true
+      volumes:
+      - name: config
+        configMap:
+          name: krakend-json
+      - name: tls-secret
+        secret:
+          secretName: kraken-tls
