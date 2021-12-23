@@ -70,6 +70,7 @@ presubmits:
         command:
         - hadolint
         args:
+        - Dockerfile
         - --verbose
     trigger: (?m)^/test( | .* )hadolint,?($|\s.*)
   - agent: kubernetes
