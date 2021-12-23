@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: top10casinowebsite-com
+  namespace: affwebsites
+  labels:
+    domain: top10casinowebsite.com
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      domain: top10casinowebsite.com
+  template:
+    metadata:
+      labels:
+        domain: top10casinowebsite.com
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: website
+        image: ghcr.io/ginbits/beefeater/top10casinowebsite.com:master
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: top10casinowebsite-com
+  namespace: affwebsites
+spec:
+  selector:
+    domain: top10casinowebsite.com
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+  type: NodePort

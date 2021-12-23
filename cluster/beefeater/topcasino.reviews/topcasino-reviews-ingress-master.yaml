@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: topcasino-reviews-ingress
+  namespace: affwebsites
+spec:
+  rules:
+  - host: topcasino.reviews
+    http:
+      paths:
+      - backend:
+          service:
+            name: topcasino-reviews
+            port:
+              number: 8080
+        path: /
+        pathType: Prefix
