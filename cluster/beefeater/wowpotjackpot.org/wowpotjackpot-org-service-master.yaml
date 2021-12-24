@@ -4,21 +4,21 @@ metadata:
   name: wowpotjackpot-org
   namespace: affwebsites
   labels:
-    app: wowpotjackpot-org
+    domain: wowpotjackpot.org
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: wowpotjackpot-org
+      domain: wowpotjackpot.org
   template:
     metadata:
       labels:
-        app: wowpotjackpot-org
+        domain: wowpotjackpot.org
     spec:
       imagePullSecrets:
       - name: regcred
       containers:
-      - name: wowpotjackpot_org
+      - name: website
         image: ghcr.io/ginbits/beefeater/wowpotjackpot.org:master
         imagePullPolicy: Always
 ---
@@ -29,7 +29,7 @@ metadata:
   namespace: affwebsites
 spec:
   selector:
-    app: wowpotjackpot-org
+    domain: wowpotjackpot.org
   ports:
   - name: http
     port: 8080
