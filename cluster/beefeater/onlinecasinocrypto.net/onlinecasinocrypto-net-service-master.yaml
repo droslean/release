@@ -4,21 +4,21 @@ metadata:
   name: onlinecasinocrypto-net
   namespace: affwebsites
   labels:
-    app: onlinecasinocrypto-net
+    domain: onlinecasinocrypto.net
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: onlinecasinocrypto-net
+      domain: onlinecasinocrypto.net
   template:
     metadata:
       labels:
-        app: onlinecasinocrypto-net
+        domain: onlinecasinocrypto.net
     spec:
       imagePullSecrets:
       - name: regcred
       containers:
-      - name: onlinecasinocrypto_net
+      - name: website
         image: ghcr.io/ginbits/beefeater/onlinecasinocrypto.net:master
         imagePullPolicy: Always
 ---
@@ -29,7 +29,7 @@ metadata:
   namespace: affwebsites
 spec:
   selector:
-    app: onlinecasinocrypto-net
+    domain: onlinecasinocrypto.net
   ports:
   - name: http
     port: 8080
