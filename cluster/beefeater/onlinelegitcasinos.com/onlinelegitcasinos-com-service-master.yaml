@@ -4,21 +4,21 @@ metadata:
   name: onlinelegitcasinos-com
   namespace: affwebsites
   labels:
-    app: onlinelegitcasinos-com
+    domain: onlinelegitcasinos.com
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: onlinelegitcasinos-com
+      domain: onlinelegitcasinos.com
   template:
     metadata:
       labels:
-        app: onlinelegitcasinos-com
+        domain: onlinelegitcasinos.com
     spec:
       imagePullSecrets:
       - name: regcred
       containers:
-      - name: onlinelegitcasinos_com
+      - name: website
         image: ghcr.io/ginbits/beefeater/onlinelegitcasinos.com:master
         imagePullPolicy: Always
 ---
@@ -29,7 +29,7 @@ metadata:
   namespace: affwebsites
 spec:
   selector:
-    app: onlinelegitcasinos-com
+    domain: onlinelegitcasinos.com
   ports:
   - name: http
     port: 8080
