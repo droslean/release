@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: onlineslot-games
+  namespace: affwebsites
+  labels:
+    domain: onlineslot.games
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      domain: onlineslot.games
+  template:
+    metadata:
+      labels:
+        domain: onlineslot.games
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: website
+        image: ghcr.io/ginbits/beefeater/onlineslot.games:master
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: onlineslot-games
+  namespace: affwebsites
+spec:
+  selector:
+    domain: onlineslot.games
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+  type: NodePort

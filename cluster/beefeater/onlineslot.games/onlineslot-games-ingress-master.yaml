@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: onlineslot-games-ingress
+  namespace: affwebsites
+spec:
+  rules:
+  - host: onlineslot.games
+    http:
+      paths:
+      - backend:
+          service:
+            name: onlineslot-games
+            port:
+              number: 8080
+        path: /
+        pathType: Prefix
