@@ -6,7 +6,7 @@ metadata:
   labels:
     app: ginsul
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: ginsul
@@ -22,9 +22,9 @@ spec:
         image: ghcr.io/ginbits/ginsul/ginsul:master
         imagePullPolicy: Always
         volumeMounts:
-        - mountPath: /app/.env.production
+        - mountPath: /app/.env
           name: ginsul-env
-          subPath: .env.production
+          subPath: .env
       volumes:
       - name: ginsul-env
         secret:

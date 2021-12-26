@@ -5,7 +5,7 @@ metadata:
   namespace: infra
 spec:
   rules:
-  - host: ginsul.ginbits.com
+  - host: app.afflix.io
     http:
       paths:
       - backend:
