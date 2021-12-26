@@ -54,3 +54,28 @@ presubmits:
         image: pipelinecomponents/markdownlint
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )markdownlint,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/flake8
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-scraper-master-flake8
+    rerun_command: /test flake8
+    spec:
+      containers:
+      - args:
+        - --verbose
+        - --ignore E731,W503,E501
+        - --max-line-length 119
+        - --exclude .git,.venv,__pycache__,create_db.py
+        - .
+        command:
+        - flake8
+        image: pipelinecomponents/flake8:latest
+        imagePullPolicy: Always
+    trigger: (?m)^/test( | .* )flake8,?($|\s.*)
