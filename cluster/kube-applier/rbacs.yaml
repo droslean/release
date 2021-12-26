@@ -74,6 +74,32 @@ rules:
   - create
   - update
   - patch
+- apiGroups:
+  - planetscale.com
+  resources:
+  - vitessclusters
+  - vitessclusters/status
+  - vitessclusters/finalizers
+  - vitesscells
+  - vitesscells/status
+  - vitesscells/finalizers
+  - vitesskeyspaces
+  - vitesskeyspaces/status
+  - vitesskeyspaces/finalizers
+  - vitessshards
+  - vitessshards/status
+  - vitessshards/finalizers
+  - etcdlockservers
+  - etcdlockservers/status
+  - etcdlockservers/finalizers
+  - vitessbackups
+  - vitessbackups/status
+  - vitessbackups/finalizers
+  - vitessbackupstorages
+  - vitessbackupstorages/status
+  - vitessbackupstorages/finalizers
+  verbs:
+  - '*'
 ---
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
