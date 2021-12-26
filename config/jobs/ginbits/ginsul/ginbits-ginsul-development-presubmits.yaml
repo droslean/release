@@ -113,6 +113,6 @@ presubmits:
       containers:
       - image: cfreak/jest
         command:
-        - jest
+        - ./hack/jest.sh
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )jest,?($|\s.*)
