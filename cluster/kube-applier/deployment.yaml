@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ci
+  name: kube-applier
+  labels:
+    app: kube-applier
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: kube-applier
+  template:
+    metadata:
+      labels:
+        app: kube-applier
+    spec:
+      serviceAccount: kube-applier
+      imagePullSecrets:
+      - name: regcred
+      containers:
+        - name: kube-applier
+          command:
+          - /kube-applier
+          env:
+          - name: REPO_PATH
+            value: /k8s/cluster
+          - name: LISTEN_PORT
+            value: "8080"
+          image: ghcr.io/ginbits/cicd-tools/kube-applier:latest
+          ports:
+          - name: http
+            containerPort: 8080
+          volumeMounts:
+          - name: git-repo
+            mountPath: /k8s
+        - name: git-sync
+          command:
+          - /git-sync
+          args:
+          - --username=oauth2
+          - --password=$(PASSWORD)
+          - --root=/git
+          env:
+          - name: GIT_SYNC_REPO
+            value: https://github.com/ginbits/release.git
+          - name: GIT_SYNC_DEST
+            value: cluster
+          - name: PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: oauth-token
+                key: oauth
+          image: gcr.io/google_containers/git-sync:v3.1.6
+          volumeMounts:
+          - name: git-repo
+            mountPath: /git
+      volumes:
+      - name: "git-repo"
+        emptyDir: {}
