@@ -2,10 +2,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ginsul-ingress-stage
-  namespace: infra
+  namespace: infra-stage
 spec:
   rules:
-  - host: ginsul.ginbits.com
+  - host: app-stage.afflix.io
     http:
       paths:
       - backend:
