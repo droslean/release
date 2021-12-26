@@ -29,7 +29,7 @@ spec:
           - /kube-applier
           env:
           - name: REPO_PATH
-            value: /k8s/cluster
+            value: /k8s/cluster/cluster
           - name: LISTEN_PORT
             value: "8080"
           image: ghcr.io/ginbits/cicd-tools/kube-applier:latest

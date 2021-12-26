@@ -33,6 +33,19 @@ rules:
   - ""
   resources:
   - services
+  - serviceaccounts
+  - persistentvolumeclaims
+  verbs:
+  - get
+  - list
+  - create
+  - update
+  - patch
+- apiGroups:
+  - rbac.authorization.k8s.io
+  resources:
+  - clusterroles
+  - clusterrolebindings
   verbs:
   - get
   - list
