@@ -70,6 +70,38 @@ spec:
               resources:
                 requests:
                   storage: 10Gi
+  - name: stage
+    turndownPolicy: Immediate
+    partitionings:
+    - equal:
+        parts: 1
+        shardTemplate:
+          databaseInitScriptSecret:
+            name: cluster-config
+            key: init_db.sql
+          replication:
+            enforceSemiSync: false
+          tabletPools:
+          - cell: zone1
+            type: replica
+            replicas: 1
+            vttablet:
+              extraFlags:
+                db_charset: utf8mb4
+              resources:
+                requests:
+                  cpu: 100m
+                  memory: 256Mi
+            mysqld:
+              resources:
+                requests:
+                  cpu: 100m
+                  memory: 256Mi
+            dataVolumeClaimTemplate:
+              accessModes: ["ReadWriteOnce"]
+              resources:
+                requests:
+                  storage: 1Gi
   updateStrategy:
     type: Immediate
 ---
