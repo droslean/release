@@ -4,21 +4,21 @@ metadata:
   name: onlinefroutakia-com
   namespace: affwebsites
   labels:
-    app: onlinefroutakia-com
+    domain: onlinefroutakia.com
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: onlinefroutakia-com
+      domain: onlinefroutakia.com
   template:
     metadata:
       labels:
-        app: onlinefroutakia-com
+        domain: onlinefroutakia.com
     spec:
       imagePullSecrets:
       - name: regcred
       containers:
-      - name: onlinefroutakia_com
+      - name: website
         image: ghcr.io/ginbits/beefeater/onlinefroutakia.com:master
         imagePullPolicy: Always
 ---
@@ -29,7 +29,7 @@ metadata:
   namespace: affwebsites
 spec:
   selector:
-    app: onlinefroutakia-com
+    domain: onlinefroutakia.com
   ports:
   - name: http
     port: 8080

@@ -4,21 +4,21 @@ metadata:
   name: nodepositcryptos-com
   namespace: affwebsites
   labels:
-    app: nodepositcryptos-com
+    domain: nodepositcryptos.com
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nodepositcryptos-com
+      domain: nodepositcryptos.com
   template:
     metadata:
       labels:
-        app: nodepositcryptos-com
+        domain: nodepositcryptos.com
     spec:
       imagePullSecrets:
       - name: regcred
       containers:
-      - name: nodepositcryptos_com
+      - name: website
         image: ghcr.io/ginbits/beefeater/nodepositcryptos.com:master
         imagePullPolicy: Always
 ---
@@ -29,7 +29,7 @@ metadata:
   namespace: affwebsites
 spec:
   selector:
-    app: nodepositcryptos-com
+    domain: nodepositcryptos.com
   ports:
   - name: http
     port: 8080

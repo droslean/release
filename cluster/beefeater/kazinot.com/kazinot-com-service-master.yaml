@@ -4,21 +4,21 @@ metadata:
   name: kazinot-com
   namespace: affwebsites
   labels:
-    app: kazinot-com
+    domain: kazinot.com
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: kazinot-com
+      domain: kazinot.com
   template:
     metadata:
       labels:
-        app: kazinot-com
+        domain: kazinot.com
     spec:
       imagePullSecrets:
       - name: regcred
       containers:
-      - name: kazinot_com
+      - name: website
         image: ghcr.io/ginbits/beefeater/kazinot.com:master
         imagePullPolicy: Always
 ---
@@ -29,7 +29,7 @@ metadata:
   namespace: affwebsites
 spec:
   selector:
-    app: kazinot-com
+    domain: kazinot.com
   ports:
   - name: http
     port: 8080

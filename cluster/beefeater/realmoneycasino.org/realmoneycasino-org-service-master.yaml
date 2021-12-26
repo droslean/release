@@ -4,21 +4,21 @@ metadata:
   name: realmoneycasino-org
   namespace: affwebsites
   labels:
-    app: realmoneycasino-org
+    domain: realmoneycasino.org
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: realmoneycasino-org
+      domain: realmoneycasino.org
   template:
     metadata:
       labels:
-        app: realmoneycasino-org
+        domain: realmoneycasino.org
     spec:
       imagePullSecrets:
       - name: regcred
       containers:
-      - name: realmoneycasino_org
+      - name: website
         image: ghcr.io/ginbits/beefeater/realmoneycasino.org:master
         imagePullPolicy: Always
 ---
@@ -29,7 +29,7 @@ metadata:
   namespace: affwebsites
 spec:
   selector:
-    app: realmoneycasino-org
+    domain: realmoneycasino.org
   ports:
   - name: http
     port: 8080
