@@ -99,7 +99,6 @@ presubmits:
     trigger: (?m)^/test( | .* )markdownlint,?($|\s.*)
   - agent: kubernetes
     always_run: true
-    optional: true
     branches:
     - master
     context: ci/prow/jest
