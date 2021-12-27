@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: npm-proxy-cache
+  namespace: ci
+  labels:
+    app: npm-proxy-cache
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: npm-proxy-cache
+  template:
+    metadata:
+      labels:
+        app: npm-proxy-cache
+    spec:
+      containers:
+      - name: npm-proxy-cache
+        image: folha/npm-proxy-cache
+        volumeMounts:
+        - name: cache
+          mountPath: /cache
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: 100m
+            memory: 200Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi
+      volumes:
+      - name: cache
+        persistentVolumeClaim:
+          claimName: npm-proxy-cache
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: npm-proxy-cache
+  namespace: ci
+spec:
+  selector:
+    app: npm-proxy-cache
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+    - name: https
+      protocol: TCP
+      port: 443
+      targetPort: 8080
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: npm-proxy-cache
+  namespace: ci
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+  storageClassName: do-block-storage
