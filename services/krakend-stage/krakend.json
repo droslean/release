@@ -28,7 +28,8 @@
         "entityId",
         "entryId",
         "entity",
-        "period"
+        "period",
+        "name"
       ],
       "allow_credentials": true
     },
@@ -669,6 +670,27 @@
       ]
     },
     {
+      "endpoint": "/admin/bonuses/20/{ID}",
+      "method": "GET",
+      "backend": [
+        {
+          "url_pattern": "/admin/bonuses/20/{ID}",
+          "encoding": "json",
+          "sd": "dns",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "hendricks"
+          ],
+          "disable_host_sanitize": true
+        }
+      ],
+      "headers_to_pass": [
+        "Authorization",
+        "Content-Type"
+      ]
+    },
+    {
       "endpoint": "/admin/bonuses/17",
       "method": "PUT",
       "backend": [
@@ -761,6 +783,48 @@
           "encoding": "json",
           "sd": "dns",
           "method": "GET",
+          "extra_config": {},
+          "host": [
+            "hendricks"
+          ],
+          "disable_host_sanitize": true
+        }
+      ],
+      "headers_to_pass": [
+        "Authorization",
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/admin/bonuses/{ID}",
+      "method": "GET",
+      "backend": [
+        {
+          "url_pattern": "/admin/bonuses/{ID}",
+          "encoding": "json",
+          "sd": "dns",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "hendricks"
+          ],
+          "disable_host_sanitize": true
+        }
+      ],
+      "headers_to_pass": [
+        "Authorization",
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/admin/bonuses/{ID}",
+      "method": "POST",
+      "backend": [
+        {
+          "url_pattern": "/admin/bonuses/{ID}",
+          "encoding": "json",
+          "sd": "dns",
+          "method": "POST",
           "extra_config": {},
           "host": [
             "hendricks"
@@ -2349,6 +2413,50 @@
       ]
     },
     {
+      "endpoint": "/admin/gambling_products",
+      "method": "POST",
+      "backend": [
+        {
+          "url_pattern": "/admin/gambling_products",
+          "encoding": "json",
+          "sd": "dns",
+          "method": "POST",
+          "extra_config": {},
+          "host": [
+            "hendricks"
+          ],
+          "disable_host_sanitize": true
+        }
+      ],
+      "headers_to_pass": [
+        "Authorization",
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/admin/gambling_products/search/20/{X}",
+      "method": "GET",
+      "backend": [
+        {
+          "url_pattern": "/admin/gambling_products/search/20/{X}",
+          "encoding": "json",
+          "sd": "dns",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "hendricks"
+          ],
+          "disable_host_sanitize": true
+        }
+      ],
+      "headers_to_pass": [
+        "Authorization",
+        "Content-Type",
+        "name",
+        "dissolved"
+      ]
+    },
+    {
       "endpoint": "/admin/gambling_products/20/{X}",
       "method": "GET",
       "backend": [
@@ -2366,70 +2474,8 @@
       ],
       "headers_to_pass": [
         "Authorization",
-        "Content-Type"
-      ]
-    },
-    {
-      "endpoint": "/admin/gambling_products/30/{X}",
-      "method": "GET",
-      "backend": [
-        {
-          "url_pattern": "/admin/gambling_products/30/{X}",
-          "encoding": "json",
-          "sd": "dns",
-          "method": "GET",
-          "extra_config": {},
-          "host": [
-            "hendricks"
-          ],
-          "disable_host_sanitize": true
-        }
-      ],
-      "headers_to_pass": [
-        "Authorization",
-        "Content-Type"
-      ]
-    },
-    {
-      "endpoint": "/admin/gambling_products/40/{X}",
-      "method": "GET",
-      "backend": [
-        {
-          "url_pattern": "/admin/gambling_products/40/{X}",
-          "encoding": "json",
-          "sd": "dns",
-          "method": "GET",
-          "extra_config": {},
-          "host": [
-            "hendricks"
-          ],
-          "disable_host_sanitize": true
-        }
-      ],
-      "headers_to_pass": [
-        "Authorization",
-        "Content-Type"
-      ]
-    },
-    {
-      "endpoint": "/admin/gambling_products/50/{X}",
-      "method": "GET",
-      "backend": [
-        {
-          "url_pattern": "/admin/gambling_products/50/{X}",
-          "encoding": "json",
-          "sd": "dns",
-          "method": "GET",
-          "extra_config": {},
-          "host": [
-            "hendricks"
-          ],
-          "disable_host_sanitize": true
-        }
-      ],
-      "headers_to_pass": [
-        "Authorization",
-        "Content-Type"
+        "Content-Type",
+        "dissolved"
       ]
     },
     {
@@ -6273,7 +6319,9 @@
       "headers_to_pass": [
         "Authorization",
         "Content-Type",
-        "entity"
+        "entity",
+        "type",
+        "period"
       ]
     },    
     {
@@ -6315,7 +6363,11 @@
       ],
       "headers_to_pass": [
         "Authorization",
-        "Content-Type"
+        "Content-Type",
+        "entityId",
+        "type",
+        "entityId",
+        "entryId"
       ]
     },
     {
@@ -6515,7 +6567,11 @@
           "encoding": "json",
           "sd": "dns",
           "method": "POST",
-          "extra_config": {},
+          "extra_config": {
+            "github.com/devopsfaith/krakend/http": {
+                "return_error_details": "hendricks"
+            }
+        },
           "host": [
             "hendricks"
           ],
