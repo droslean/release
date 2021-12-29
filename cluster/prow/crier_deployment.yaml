@@ -19,7 +19,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
       - name: crier
-        image: gcr.io/k8s-prow/crier:v20210921-6ca431fa31
+        image: gcr.io/k8s-prow/crier:v20211221-aa59567d4d
         args:
         - --blob-storage-workers=1
         - --s3-credentials-file=/etc/aws-creds/service-account.json
