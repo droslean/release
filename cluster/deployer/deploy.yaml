@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ci
+  name: deployer
+  labels:
+    app: deployer
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: deployer
+  template:
+    metadata:
+      labels:
+        deployer.ginbits.com/image: ghcr.io/ginbits/cicd-tools/deployer:master
+        app: deployer
+    spec:
+      containers:
+      - name: deployer
+        image: ghcr.io/ginbits/cicd-tools/deployer:master
+        imagePullPolicy: Always
+        commands:
+        - /usr/bin/deployer
+        args:
+        - --hmac-secret-file=/etc/webhook/hmac
+        - --dry-run=false
+        ports:
+          - name: http
+            containerPort: 8888
+        volumeMounts:
+        - name: hmac
+          mountPath: /etc/webhook
+          readOnly: true
+      volumes:
+      - name: hmac
+        secret:
+          secretName: hmac-token
+      - name: github-token
+        secret:
+          secretName: oauth-token
