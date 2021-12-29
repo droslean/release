@@ -4,6 +4,7 @@ metadata:
   namespace: ci
   name: deployer
   labels:
+    deployer.ginbits.com/image: Z2hjci5pby9naW5iaXRzL2NpY2QtdG9vbHMvZGVwbG95ZXI6bWFzdGVy
     app: deployer
 spec:
   replicas: 1
@@ -18,9 +19,10 @@ spec:
   template:
     metadata:
       labels:
-        deployer.ginbits.com/image: "ghcr.io/ginbits/cicd-tools/deployer:master"
         app: deployer
     spec:
+      imagePullSecrets:
+      - name: regcred
       containers:
       - name: deployer
         image: ghcr.io/ginbits/cicd-tools/deployer:master
