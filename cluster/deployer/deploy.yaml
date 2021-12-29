@@ -25,7 +25,7 @@ spec:
       - name: deployer
         image: ghcr.io/ginbits/cicd-tools/deployer:master
         imagePullPolicy: Always
-        commands:
+        command:
         - /usr/bin/deployer
         args:
         - --hmac-secret-file=/etc/webhook/hmac
