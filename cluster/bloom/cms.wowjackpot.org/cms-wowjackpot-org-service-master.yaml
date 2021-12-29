@@ -1,35 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wowpotjackpot-org
+  name: cms-wowjackpot-org
   namespace: affwebsites
   labels:
-    domain: wowpotjackpot.org
+    domain: cms.wowjackpot.org
 spec:
   replicas: 1
   selector:
     matchLabels:
-      domain: wowpotjackpot.org
+      domain: cms.wowjackpot.org
   template:
     metadata:
       labels:
-        domain: wowpotjackpot.org
+        domain: cms.wowjackpot.org
     spec:
       imagePullSecrets:
       - name: regcred
       containers:
       - name: website
-        image: ghcr.io/ginbits/beefeater/wowpotjackpot.org:master
+        image: ghcr.io/ginbits/beefeater/cms.wowjackpot.org:master
         imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: wowpotjackpot-org
+  name: cms-wowjackpot-org
   namespace: affwebsites
 spec:
   selector:
-    domain: wowpotjackpot.org
+    domain: cms.wowjackpot.org
   ports:
   - name: http
     port: 8080
