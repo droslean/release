@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       labels:
-        deployer.ginbits.com/image: ghcr.io/ginbits/cicd-tools/deployer:master
+        deployer.ginbits.com/image: "ghcr.io/ginbits/cicd-tools/deployer:master"
         app: deployer
     spec:
       containers:
