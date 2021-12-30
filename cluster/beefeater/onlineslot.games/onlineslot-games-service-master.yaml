@@ -4,6 +4,10 @@ metadata:
   name: onlineslot-games
   namespace: affwebsites
   labels:
+    deployer.ginbits.com/org: ginbits
+    deployer.ginbits.com/repo: beefeater
+    deployer.ginbits.com/branch: master
+    deployer.ginbits.com/image: onlineslot.games
     domain: onlineslot.games
 spec:
   replicas: 1

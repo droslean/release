@@ -4,6 +4,10 @@ metadata:
   name: onlinecryptocasinos-com
   namespace: affwebsites
   labels:
+    deployer.ginbits.com/org: ginbits
+    deployer.ginbits.com/repo: beefeater
+    deployer.ginbits.com/branch: master
+    deployer.ginbits.com/image: onlinecryptocasinos.com
     domain: onlinecryptocasinos.com
 spec:
   replicas: 1
