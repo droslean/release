@@ -4,6 +4,10 @@ metadata:
   name: onlinelegitcasinos-com
   namespace: affwebsites
   labels:
+    deployer.ginbits.com/org: ginbits
+    deployer.ginbits.com/repo: beefeater
+    deployer.ginbits.com/branch: master
+    deployer.ginbits.com/image: onlinelegitcasinos.com
     domain: onlinelegitcasinos.com
 spec:
   replicas: 1
