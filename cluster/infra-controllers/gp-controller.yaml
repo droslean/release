@@ -4,6 +4,10 @@ metadata:
   name: gp-controller
   namespace: infra
   labels:
+    deployer.ginbits.com/org: ginbits
+    deployer.ginbits.com/repo: infra-controllers
+    deployer.ginbits.com/branch: master
+    deployer.ginbits.com/image: gp-controller
     app: gp-controller
 spec:
   replicas: 1

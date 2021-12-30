@@ -4,7 +4,10 @@ metadata:
   namespace: ci
   name: deployer
   labels:
-    deployer.ginbits.com/image: Z2hjci5pby9naW5iaXRzL2NpY2QtdG9vbHMvZGVwbG95ZXI6bWFzdGVy
+    deployer.ginbits.com/org: ginbits
+    deployer.ginbits.com/repo: cicd-tools
+    deployer.ginbits.com/branch: master
+    deployer.ginbits.com/image: deployer
     app: deployer
 spec:
   replicas: 1
@@ -21,6 +24,7 @@ spec:
       labels:
         app: deployer
     spec:
+      serviceAccount: deployer
       imagePullSecrets:
       - name: regcred
       containers:
@@ -30,6 +34,7 @@ spec:
         command:
         - /usr/bin/deployer
         args:
+        - --endpoint=/
         - --hmac-secret-file=/etc/webhook/hmac
         - --dry-run=false
         ports:
