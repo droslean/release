@@ -4,6 +4,10 @@ metadata:
   name: ustopcasino-com
   namespace: affwebsites
   labels:
+    deployer.ginbits.com/org: ginbits
+    deployer.ginbits.com/repo: beefeater
+    deployer.ginbits.com/branch: master
+    deployer.ginbits.com/image: ustopcasino.com
     domain: ustopcasino.com
 spec:
   replicas: 1
