@@ -4,6 +4,10 @@ metadata:
   name: hendricks
   namespace: infra-stage
   labels:
+    deployer.ginbits.com/org: ginbits
+    deployer.ginbits.com/repo: hendricks
+    deployer.ginbits.com/branch: staging
+    deployer.ginbits.com/image: hendricks
     app: hendricks
 spec:
   replicas: 1
