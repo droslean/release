@@ -4,6 +4,10 @@ metadata:
   name: top10casinowebsite-com
   namespace: affwebsites
   labels:
+    deployer.ginbits.com/org: ginbits
+    deployer.ginbits.com/repo: beefeater
+    deployer.ginbits.com/branch: master
+    deployer.ginbits.com/image: top10casinowebsite.com
     domain: top10casinowebsite.com
 spec:
   replicas: 1

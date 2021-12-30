@@ -4,6 +4,10 @@ metadata:
   name: nodepositcryptos-com
   namespace: affwebsites
   labels:
+    deployer.ginbits.com/org: ginbits
+    deployer.ginbits.com/repo: beefeater
+    deployer.ginbits.com/branch: master
+    deployer.ginbits.com/image: nodepositcryptos.com
     domain: nodepositcryptos.com
 spec:
   replicas: 1
