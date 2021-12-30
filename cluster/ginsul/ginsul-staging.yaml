@@ -4,6 +4,10 @@ metadata:
   name: ginsul
   namespace: infra-stage
   labels:
+    deployer.ginbits.com/org: ginbits
+    deployer.ginbits.com/repo: ginsul
+    deployer.ginbits.com/branch: staging
+    deployer.ginbits.com/image: ginsul
     app: ginsul
 spec:
   replicas: 1
