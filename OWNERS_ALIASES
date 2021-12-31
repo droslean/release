@@ -1,0 +1,33 @@
+aliases:
+  engineers:
+    - droslean
+    - gregpavl
+    - alysandratouginbits
+    - ioannis-michelakis
+    - mpuica
+    - spimou
+    - theogriv
+  php_approvers:
+    - droslean
+    - gregpavl
+    - mpuica
+  sh_approvers:
+    - droslean
+    - gregpavl
+  go_approvers:
+    - droslean
+    - gregpavl
+  ts_approvers:
+    - droslean
+    - gregpavl
+    - mpuica
+  js_approvers:
+    - alysandratouginbits
+    - mpuica
+  py_approvers:
+    - droslean
+    - gregpavl
+    - krypotos
+  general_approvers:
+    - droslean
+    - gregpavl
