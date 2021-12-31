@@ -1,5 +1,24 @@
-approvers:
-- droslean
-reviewers:
-- georbast
-- ioannis-michelakis
+filters:
+  ".*":
+    reviewers:
+      - engineers
+    approvers:
+      - general_approvers
+  "*\\.go$":
+    required_approvers:
+      - go_approvers
+  "*\\.php$":
+    required_approvers:
+      - php_approvers
+  "*\\.sh$":
+    required_approvers:
+      - sh_approvers
+  "*\\.ts$":
+    required_approvers:
+      - ts_approvers
+  "*\\.js$":
+    required_approvers:
+      - js_approvers
+  "*\\.py$":
+    required_approvers:
+      - py_approvers
