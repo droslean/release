@@ -25,6 +25,14 @@ spec:
       - name: website
         image: ghcr.io/ginbits/beefeater/cms.wowjackpot.org:master
         imagePullPolicy: Always
+        volumeMounts:
+        - mountPath: /var/www/html/.env
+          name: cms-wowjackpot-org-env
+          subPath: .env
+      volumes:
+      - name: cms-wowjackpot-org-env
+        secret:
+          secretName: cms-wowjackpot-org-env
 ---
 apiVersion: v1
 kind: Service
