@@ -23,7 +23,7 @@ spec:
       - name: regcred
       containers:
       - name: website
-        image: ghcr.io/ginbits/bloom/cms.wowjackpot.org:master
+        image: ghcr.io/ginbits/bloom/cms.wowpotjackpot.org:master
         imagePullPolicy: Always
         volumeMounts:
         - mountPath: /var/www/html/.env
