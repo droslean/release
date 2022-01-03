@@ -5,7 +5,7 @@ metadata:
   namespace: affwebsites
   labels:
     deployer.ginbits.com/org: ginbits
-    deployer.ginbits.com/repo: beefeater
+    deployer.ginbits.com/repo: bloom
     deployer.ginbits.com/branch: master
     deployer.ginbits.com/image: cms.wowjackpot.org
     domain: cms.wowjackpot.org
@@ -23,7 +23,7 @@ spec:
       - name: regcred
       containers:
       - name: website
-        image: ghcr.io/ginbits/beefeater/cms.wowjackpot.org:master
+        image: ghcr.io/ginbits/bloom/cms.wowjackpot.org:master
         imagePullPolicy: Always
         volumeMounts:
         - mountPath: /var/www/html/.env
