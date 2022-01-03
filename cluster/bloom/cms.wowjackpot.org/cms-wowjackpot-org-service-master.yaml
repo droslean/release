@@ -29,10 +29,16 @@ spec:
         - mountPath: /var/www/html/.env
           name: cms-wowjackpot-org-env
           subPath: .env
+        - mountPath: /var/www/html/auth.json
+          name: composer-creds
+          subPath: auth.json
       volumes:
       - name: cms-wowjackpot-org-env
         secret:
           secretName: cms-wowjackpot-org-env
+      - name: composer-creds
+        secret:
+          secretName: composer-creds
 ---
 apiVersion: v1
 kind: Service
