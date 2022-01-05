@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cms-wowjackpot-org
+  name: cms-wowpotjackpot-org
   namespace: affwebsites
   labels:
     deployer.ginbits.com/org: ginbits
     deployer.ginbits.com/repo: bloom
     deployer.ginbits.com/branch: master
     deployer.ginbits.com/image: cms.wowpotjackpot.org
-    domain: cms.wowjackpot.org
+    domain: cms.wowpotjackpot.org
 spec:
   replicas: 1
   selector:
     matchLabels:
-      domain: cms.wowjackpot.org
+      domain: cms.wowpotjackpot.org
   template:
     metadata:
       labels:
-        domain: cms.wowjackpot.org
+        domain: cms.wowpotjackpot.org
     spec:
       imagePullSecrets:
       - name: regcred
@@ -27,15 +27,15 @@ spec:
         imagePullPolicy: Always
         volumeMounts:
         - mountPath: /var/www/html/.env
-          name: cms-wowjackpot-org-env
+          name: cms-wowpotjackpot-org-env
           subPath: .env
         - mountPath: /var/www/html/auth.json
           name: composer-creds
           subPath: auth.json
       volumes:
-      - name: cms-wowjackpot-org-env
+      - name: cms-wowpotjackpot-org-env
         secret:
-          secretName: cms-wowjackpot-org-env
+          secretName: cms-wowpotjackpot-org-env
       - name: composer-creds
         secret:
           secretName: composer-creds
@@ -43,11 +43,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: cms-wowjackpot-org
+  name: cms-wowpotjackpot-org
   namespace: affwebsites
 spec:
   selector:
-    domain: cms.wowjackpot.org
+    domain: cms.wowpotjackpot.org
   ports:
   - name: http
     port: 8080
