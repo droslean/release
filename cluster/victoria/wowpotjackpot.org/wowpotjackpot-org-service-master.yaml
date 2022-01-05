@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wowpotjackpot-org
+  namespace: affwebsites
+  labels:
+    deployer.ginbits.com/org: ginbits
+    deployer.ginbits.com/repo: victoria
+    deployer.ginbits.com/branch: master
+    deployer.ginbits.com/image: wowpotjackpot.org
+    domain: wowpotjackpot.org
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      domain: wowpotjackpot.org
+  template:
+    metadata:
+      labels:
+        domain: wowpotjackpot.org
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: website
+        image: ghcr.io/ginbits/victoria/wowpotjackpot.org:master
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wowpotjackpot-org
+  namespace: affwebsites
+spec:
+  selector:
+    domain: wowpotjackpot.org
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+  type: NodePort
