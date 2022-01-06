@@ -215,8 +215,8 @@ orgs:
         target: both
         prowPlugin: shrug
         addedBy: humans
-      - color: cfd3d7
+      - color: e11d21
         description: This pull request already exists.
         name: duplicate
         target: prs
-        addedBy: anyone
+        addedBy: humans
