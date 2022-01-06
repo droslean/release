@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: australiancasino-online
+  namespace: affwebsites
+  labels:
+    deployer.ginbits.com/org: ginbits
+    deployer.ginbits.com/repo: beefeater
+    deployer.ginbits.com/branch: master
+    deployer.ginbits.com/image: australiancasino.online
+    domain: australiancasino.online
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      domain: australiancasino.online
+  template:
+    metadata:
+      labels:
+        domain: australiancasino.online
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: website
+        image: ghcr.io/ginbits/beefeater/australiancasino.online:master
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: australiancasino-online
+  namespace: affwebsites
+spec:
+  selector:
+    domain: australiancasino.online
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+  type: NodePort
