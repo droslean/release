@@ -5,7 +5,7 @@ metadata:
   namespace: affwebsites
 spec:
   rules:
-  - host: kazinot.com
+  - host: australiancasino.online
     http:
       paths:
       - backend:
