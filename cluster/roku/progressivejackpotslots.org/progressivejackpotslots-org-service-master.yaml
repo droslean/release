@@ -23,7 +23,7 @@ spec:
       - name: regcred
       containers:
       - name: website
-        image: ghcr.io/ginbits/beefeater/progressivejackpotslots.org:master
+        image: ghcr.io/ginbits/roku/progressivejackpotslots.org:master
         imagePullPolicy: Always
 ---
 apiVersion: v1
