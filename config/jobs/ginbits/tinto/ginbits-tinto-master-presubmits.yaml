@@ -59,6 +59,7 @@ presubmits:
     trigger: (?m)^/test( | .* )php-cs-fixer,?($|\s.*)
   - agent: kubernetes
     always_run: true
+    optional: true
     branches:
     - master
     context: ci/prow/phpmd
