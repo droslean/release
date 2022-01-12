@@ -25,7 +25,7 @@ periodics:
         valueFrom:
           secretKeyRef:
             name: scraper-proxies
-            usa: usa
+            key: usa
       - name: UK_PROXY
         valueFrom:
           secretKeyRef:
