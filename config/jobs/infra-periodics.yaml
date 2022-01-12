@@ -5,23 +5,41 @@ periodics:
     oauth_token_secret:
       key: oauth
       name: github-cloner
-  interval: 1d
+  interval: 24h
   max_concurrency: 1
   name: periodic-ginbits-scraper
   spec:
+    imagePullSecrets:
+    - name: regcred
     containers:
     - env:
       - name: DB_HOST
         value: ginbits-db-vtgate-41780ab4.vitess
+      - name: DB_USER
+        value: user
       - name: DB_PORT
         value: "3306"
       - name: DB_NAME
         value: scraper
+      - name: USA_PROXY
+        valueFrom:
+          secretKeyRef:
+            name: scraper-proxies
+            usa: usa
+      - name: UK_PROXY
+        valueFrom:
+          secretKeyRef:
+            name: scraper-proxies
+            key: uk
       - name: DB_PWD
         valueFrom:
           secretKeyRef:
             name: scraper-db
             key: dbpass
+      command:
+      - python
+      args:
+      - /scraper/run.py
       image: ghcr.io/ginbits/scraper/scraper:master
       imagePullPolicy: Always
       name: scraper
