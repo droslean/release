@@ -1,0 +1,31 @@
+periodics:
+- agent: kubernetes
+  decorate: true
+  decoration_config:
+    oauth_token_secret:
+      key: oauth
+      name: github-cloner
+  interval: 1d
+  max_concurrency: 1
+  name: periodic-ginbits-scraper
+  spec:
+    containers:
+    - env:
+      - name: DB_HOST
+        value: ginbits-db-vtgate-41780ab4.vitess
+      - name: DB_PORT
+        value: "3306"
+      - name: DB_NAME
+        value: scraper
+      - name: DB_PWD
+        valueFrom:
+          secretKeyRef:
+            name: scraper-db
+            key: dbpass
+      image: ghcr.io/ginbits/scraper/scraper:master
+      imagePullPolicy: Always
+      name: scraper
+      resources:
+        requests:
+          cpu: "1"
+          memory: 300Mi

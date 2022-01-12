@@ -79,6 +79,9 @@ config_updater:
     config/jobs/**/**/*-development-presubmits.yaml:
       namespace: ci
       name: job-config
+    config/jobs/infra-periodics.yaml:
+      namespace: ci
+      name: job-config
     services/prow/config.yaml:
       namespace: ci
       name: config
