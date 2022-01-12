@@ -52,9 +52,10 @@ presubmits:
         - --no-ansi
         - --no-interaction
         - --using-cache=no
+        - .
         command:
         - php-cs-fixer
-        image: wiseartisans/php-cs-fixer:2
+        image: cytopia/php-cs-fixer:latest
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )php-cs-fixer,?($|\s.*)
   - agent: kubernetes
