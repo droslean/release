@@ -42,6 +42,12 @@ deck:
     favicon: /static/extensions/favicon.ico
     header_color: darkcyan
     logo: /static/extensions/logo.png
+  rerun_auth_configs:
+    '*':
+      github_users:
+      - krypotos
+      - gregpavl
+      - droslean
   spyglass:
     lenses:
     - lens:
