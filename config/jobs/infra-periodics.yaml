@@ -47,3 +47,28 @@ periodics:
         requests:
           cpu: "1"
           memory: 300Mi
+
+- agent: kubernetes
+  name: periodic-ginbits-plymouth
+  decorate: true
+  decoration_config:
+    oauth_token_secret:
+      key: oauth
+      name: github-cloner
+  interval: 24h
+  max_concurrency: 1
+  spec:
+    containers:
+    - image: ghcr.io/ginbits/plymouth/plymouth:master
+      imagePullPolicy: Always
+      name: plymouth
+      command:
+        - robot
+      args:
+        - --console verbose
+        - --outputdir reports
+        - suites/functional
+      resources:
+        requests:
+          cpu: "1"
+          memory: 300Mi
