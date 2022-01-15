@@ -97,3 +97,4 @@ label:
   - tide/merge-method-rebase
   - tide/merge-method-squash
   - duplicate
+  - how-to

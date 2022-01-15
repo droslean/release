@@ -220,3 +220,8 @@ orgs:
         name: duplicate
         target: prs
         addedBy: humans
+      - color: c7def8
+        description: This pull request contains a How-To explanation.
+        name: how-to
+        target: prs
+        addedBy: humans
