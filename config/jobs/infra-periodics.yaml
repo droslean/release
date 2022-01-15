@@ -55,7 +55,7 @@ periodics:
     oauth_token_secret:
       key: oauth
       name: github-cloner
-  interval: 24h
+  interval: 6h
   max_concurrency: 1
   spec:
     containers:
