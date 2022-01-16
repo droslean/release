@@ -54,3 +54,84 @@ presubmits:
         image: pipelinecomponents/markdownlint
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )markdownlint,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/dotenv-linter
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-tanqueray-master-dotenv-linter
+    rerun_command: /test dotenv-linter
+    spec:
+      containers:
+        command:
+        - dotenv-linter
+        image: dotenvlinter/dotenv-linter
+        imagePullPolicy: Always
+    trigger: (?m)^/test( | .* )dotenv-linter,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/stylelint
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-tanqueray-master-stylelint
+    rerun_command: /test stylelint
+    spec:
+      containers:
+      - args:
+        - --color
+        - '**/*.css'
+        command:
+        - stylelint
+        image: pipeline-components/stylelint:latest
+        imagePullPolicy: Always
+    trigger: (?m)^/test( | .* )stylelint,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/shellcheck
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-tanqueray-master-shellcheck
+    rerun_command: /test shellcheck
+    spec:
+      containers:
+        command:
+        - |
+          find . -name .git -type d -prune -o -type f  -name \*.sh -print0 |
+          xargs -0 -P $(nproc) -r -n1 shellcheck
+        image: pipelinecomponents/shellcheck:latest
+        imagePullPolicy: Always
+    trigger: (?m)^/test( | .* )shellcheck,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/xmllint
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-tanqueray-master-xmllint
+    rerun_command: /test xmllint
+    spec:
+      containers:
+        command:
+        - find -type f -iname "*.xml" | xargs xmllint --noout
+        image: pipelinecomponents/xmllint:latest
+        imagePullPolicy: Always
+    trigger: (?m)^/test( | .* )xmllint,?($|\s.*)
