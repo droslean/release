@@ -78,3 +78,41 @@ presubmits:
         image: pipelinecomponents/markdownlint
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )markdownlint,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/config
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-release-master-config
+    rerun_command: /test config
+    spec:
+      containers:
+      - args:
+        - --github-endpoint=https://api.github.com
+        - --github-token-path=/etc/github/oauth
+        - --config-path=./services/prow/config.yaml
+        - --job-config-path=./config/jobs/
+        - --plugin-config=./services/prow/plugins.yaml
+        - --strict
+        command:
+        - /checkconfig
+        image: gcr.io/k8s-prow/checkconfig:v20220115-3e20513bd7
+        imagePullPolicy: IfNotPresent
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+        volumeMounts:
+        - name: oauth
+          mountPath: /etc/github
+          readOnly: true
+      volumes:
+      - name: oauth
+        secret:
+          secretName: oauth-token
+    trigger: (?m)^/test( | .* )config,?($|\s.*)

@@ -11,6 +11,7 @@ tide:
     - lgtm
     - approved
     missingLabels:
+    - needs-rebase
     - do-not-merge
     - do-not-merge/hold
     - do-not-merge/invalid-owners-file
