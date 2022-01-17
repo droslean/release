@@ -65,7 +65,7 @@ periodics:
         - robot
       args:
         - --console verbose
-        - --outputdir reports
+        - --outputdir $(ARTIFACTS)/reports
         - suites/functional
       resources:
         requests:
