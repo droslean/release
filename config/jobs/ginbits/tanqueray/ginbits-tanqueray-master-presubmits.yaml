@@ -133,3 +133,24 @@ presubmits:
         image: pipelinecomponents/shellcheck:latest
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )shellcheck,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/secretlint
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-tanqueray-master-secretlint
+    rerun_command: /test secretlint
+    spec:
+      containers:
+      - args:
+        - "**/*"
+        command:
+        - secretlint
+        image: secretlint/secretlint:latest
+        imagePullPolicy: Always
+    trigger: (?m)^/test( | .* )secretlint,?($|\s.*)
