@@ -22,6 +22,7 @@
         "Cache-Control",
         "Pragma",
         "Accept-Language",
+        "Expires",
         "type",
         "name",
         "dissolved",
@@ -8078,7 +8079,11 @@
           "encoding": "json",
           "sd": "dns",
           "method": "GET",
-          "extra_config": {},
+          "extra_config": {
+            "github.com/devopsfaith/krakend/http": {
+                "return_error_details": "hendricks"
+            }
+        },
           "host": [
             "hendricks"
           ],
@@ -8087,7 +8092,9 @@
       ],
       "headers_to_pass": [
         "Authorization",
-        "Content-Type"
+        "Content-Type",
+        "hostname",
+        "ip-address"
       ]
     },
     {
