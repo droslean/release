@@ -114,3 +114,22 @@ presubmits:
         image: pipelinecomponents/xmllint:latest
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )xmllint,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/shellcheck
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-tanqueray-master-shellcheck
+    rerun_command: /test shellcheck
+    spec:
+      containers:
+      - command:
+        - find . -name .git -type d -prune -o -type f -name "*.sh" -print0 | xargs -0 shellcheck
+        image: pipelinecomponents/shellcheck:latest
+        imagePullPolicy: Always
+    trigger: (?m)^/test( | .* )shellcheck,?($|\s.*)
