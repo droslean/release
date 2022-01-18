@@ -54,3 +54,22 @@ presubmits:
         image: pipelinecomponents/markdownlint
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )markdownlint,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/dotenv-linter
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-tanqueray-master-dotenv-linter
+    rerun_command: /test dotenv-linter
+    spec:
+      containers:
+      - command:
+        - dotenv-linter
+        image: dotenvlinter/dotenv-linter:latest
+        imagePullPolicy: Always
+    trigger: (?m)^/test( | .* )dotenv-linter,?($|\s.*)
