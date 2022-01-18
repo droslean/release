@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: npm-proxy-cache
-        image: folha/npm-proxy-cache
+        image: enmobile/npm-proxy:latest
         volumeMounts:
         - name: cache
           mountPath: /cache
