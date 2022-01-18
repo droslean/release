@@ -57,16 +57,19 @@ periodics:
   interval: 6h
   max_concurrency: 1
   spec:
+    imagePullSecrets:
+      - name: regcred
     containers:
     - image: ghcr.io/ginbits/plymouth/plymouth:master
       imagePullPolicy: Always
       name: plymouth
       command:
-        - robot
+        - docker run
       args:
-        - --console verbose
-        - --outputdir $(ARTIFACTS)/reports
-        - suites/functional
+        - -v $(ARTIFACTS)/reports:/opt/robotframework/reports:Z
+        - -v ./Tests/FunctionalTestSuites:/opt/robotframework/tests:Z
+        - -v ./Resources:/opt/Resources:Z
+        - ppodgorsek/robot-framework:latest
       resources:
         requests:
           cpu: "1"
