@@ -73,3 +73,25 @@ presubmits:
         image: dotenvlinter/dotenv-linter:latest
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )dotenv-linter,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/stylelint
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-tanqueray-master-stylelint
+    rerun_command: /test stylelint
+    spec:
+      containers:
+      - args:
+        - --color
+        - '**/*.css'
+        command:
+        - stylelint
+        image: pipeline-components/stylelint:latest
+        imagePullPolicy: Always
+    trigger: (?m)^/test( | .* )stylelint,?($|\s.*)
