@@ -4,6 +4,10 @@ metadata:
   name: npm-proxy-cache
   namespace: ci
   labels:
+    deployer.ginbits.com/org: ginbits
+    deployer.ginbits.com/repo: cicd-tools
+    deployer.ginbits.com/branch: master
+    deployer.ginbits.com/image: npm-proxy-cache
     app: npm-proxy-cache
 spec:
   replicas: 1
@@ -15,9 +19,11 @@ spec:
       labels:
         app: npm-proxy-cache
     spec:
+      imagePullSecrets:
+      - name: regcred
       containers:
       - name: npm-proxy-cache
-        image: enmobile/npm-proxy:latest
+        image: ghcr.io/ginbits/cicd-tools/npm-proxy-cache:master
         volumeMounts:
         - name: cache
           mountPath: /cache
