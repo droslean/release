@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    deployer.ginbits.com/branch: master
+    deployer.ginbits.com/image: aloha.com
+    deployer.ginbits.com/org: ginbits
+    deployer.ginbits.com/repo: roku
+    domain: aloha.com
+  name: aloha-com
+  namespace: affwebsites
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      domain: aloha.com
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        domain: aloha.com
+    spec:
+      containers:
+      - image: ghcr.io/ginbits/roku/aloha.com:master
+        imagePullPolicy: Always
+        name: website
+        resources: {}
+      imagePullSecrets:
+      - name: regcred
+status: {}
