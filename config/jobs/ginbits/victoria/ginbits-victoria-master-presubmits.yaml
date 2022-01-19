@@ -115,3 +115,25 @@ presubmits:
         - ./hack/jest.sh
         imagePullPolicy: Always
     trigger: (?m)^/test( | .* )jest,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/hadolint
+    decorate: true
+    decoration_config:
+      oauth_token_secret:
+        key: oauth
+        name: github-cloner
+    name: pull-ci-ginbits-victoria-master-hadolint
+    rerun_command: /test hadolint
+    spec:
+      containers:
+      - image: hadolint/hadolint
+        imagePullPolicy: Always
+        command:
+        - hadolint
+        args:
+        - Dockerfile
+        - --verbose
+    trigger: (?m)^/test( | .* )hadolint,?($|\s.*)
