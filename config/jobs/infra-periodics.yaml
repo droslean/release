@@ -55,21 +55,24 @@ periodics:
       key: oauth
       name: github-cloner
   interval: 6h
+  extra_refs:
+  - base_ref: master
+    org: ginbits
+    repo: plymouth
+    workdir: true
   max_concurrency: 1
   spec:
     imagePullSecrets:
-      - name: regcred
+    - name: regcred
     containers:
     - image: ghcr.io/ginbits/plymouth/plymouth:master
       imagePullPolicy: Always
       name: plymouth
       command:
-        - docker run
+      - robot
       args:
-        - -v $(ARTIFACTS)/reports:/opt/robotframework/reports:Z
-        - -v ./Tests/FunctionalTestSuites:/opt/robotframework/tests:Z
-        - -v ./Resources:/opt/Resources:Z
-        - ppodgorsek/robot-framework:latest
+      - --outputdir=$(ARTIFACTS)/reports
+      - ./Tests/FunctionalTestSuite/
       resources:
         requests:
           cpu: "1"
